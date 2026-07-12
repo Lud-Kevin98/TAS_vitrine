@@ -2,15 +2,14 @@ import { useEffect, useState } from 'react'
 import {
   Activity, AlertTriangle, ArrowRight, BarChart3, Building2, CheckCircle2, ChevronDown, Clock,
   DatabaseZap, FileText, Fingerprint, GraduationCap, HeartPulse, Headphones, History, KeyRound,
-  LayoutGrid, Lock, Mail, MapPin, Menu, MessageCircle, Package, Phone, Puzzle, Quote, Search,
-  ServerCrash, Settings2, Server, ShieldCheck, ShoppingBag, Sparkles, Star, TrendingDown, TrendingUp,
+  LayoutGrid, Lock, Mail, MapPin, Menu, MessageCircle, Package, Phone, Puzzle, Search,
+  ServerCrash, Settings2, Server, ShieldCheck, ShoppingBag, Sparkles, TrendingDown, TrendingUp,
   Truck, Users, UtensilsCrossed, X, Zap,
 } from 'lucide-react'
 
 type Lang = 'fr' | 'en' | 'de'
 type LegalKey = 'impressum' | 'privacy' | 'terms'
 const LOGO = '/logo.png'
-const APP_URL = 'https://app.tas-platform.com'   // ← à remplacer par l'URL réelle de l'app
 
 type ModuleItem = { id: string; name: string; icon: React.ElementType; available: boolean; color: string; badge: string; tagline: string; desc: string; features: string[] }
 type CardItem = { icon: React.ElementType; title: string; desc: string }
@@ -575,18 +574,6 @@ function Header({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
   )
 }
 
-function TrackWidget({ t }: { t: any }) {
-  const [code, setCode] = useState('')
-  const go = (e: React.FormEvent) => { e.preventDefault(); if (code.trim()) window.open(`${APP_URL}/track/${encodeURIComponent(code.trim())}`, '_blank') }
-  return (
-    <form onSubmit={go} className="bg-white rounded-2xl shadow-medium border border-slate-100 p-2 flex items-center gap-2 max-w-md">
-      <div className="pl-3 text-blue-600"><Search size={18} /></div>
-      <input className="flex-1 bg-transparent outline-none text-sm text-slate-700 placeholder:text-slate-400 py-2.5" placeholder={t.trackPlaceholder} value={code} onChange={(e) => setCode(e.target.value)} />
-      <button type="submit" className="btn-primary px-4 py-2.5 text-sm shrink-0">{t.trackBtn}</button>
-    </form>
-  )
-}
-
 function Hero({ lang }: { lang: Lang }) {
   const t = content[lang]
   return (
@@ -604,7 +591,6 @@ function Hero({ lang }: { lang: Lang }) {
               <a href="#demo" className="btn-primary py-4 px-7 text-[15px]">{t.heroPrimary}<ArrowRight size={18} /></a>
               <a href="#pricing" className="btn-outline py-4 px-7 text-[15px]">{t.heroSecondary}</a>
             </div>
-            <div className="pt-2"><p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">{t.trackLabel}</p><TrackWidget t={t} /></div>
             <div className="grid grid-cols-3 gap-4 pt-2">
               {t.heroStats.map(([n, l]: string[]) => (
                 <div key={l} className="glass rounded-2xl p-4 shadow-soft hover:shadow-medium transition-all"><p className="font-display font-bold text-2xl gradient-text">{n}</p><p className="text-xs text-slate-500 mt-1">{l}</p></div>
@@ -748,23 +734,6 @@ function Pricing({ lang }: { lang: Lang }) {
         <p className="text-center text-xs text-slate-400 mt-8 max-w-2xl mx-auto">{t.pricingFoot}</p>
       </div>
     </section>
-  )
-}
-
-function Testimonials({ lang }: { lang: Lang }) {
-  const t = content[lang]
-  return (
-    <section className="py-24 bg-slate-50"><div className="max-w-7xl mx-auto px-4 sm:px-6">
-      <div className="reveal text-center max-w-3xl mx-auto mb-14 space-y-4"><Label>{t.testiLabel}</Label><h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-[42px] text-slate-900">{t.testiTitle}</h2></div>
-      <div className="grid md:grid-cols-3 gap-6">{t.testimonials.map(([quote, name, role]: string[]) => (
-        <div key={name} className="bg-white rounded-2xl p-7 border border-slate-100 shadow-soft flex flex-col">
-          <Quote size={26} className="text-blue-200 mb-3" />
-          <div className="flex gap-0.5 mb-3">{[0,1,2,3,4].map(i => <Star key={i} size={15} className="text-amber-400 fill-amber-400" />)}</div>
-          <p className="font-body text-slate-700 leading-relaxed flex-1">“{quote}”</p>
-          <div className="mt-5 pt-4 border-t border-slate-100"><p className="font-display font-bold text-slate-900 text-sm">{name}</p><p className="text-xs text-slate-500">{role}</p></div>
-        </div>
-      ))}</div>
-    </div></section>
   )
 }
 
@@ -935,7 +904,6 @@ export default function App() {
         <Logistics lang={lang} />
         <Security lang={lang} />
         <Pricing lang={lang} />
-        <Testimonials lang={lang} />
         <Consulting lang={lang} />
         <ValueMission lang={lang} />
         <HowSteps lang={lang} />
