@@ -7,7 +7,8 @@ import {
   Truck, Users, UtensilsCrossed, X, Zap,
 } from 'lucide-react'
 
-type Lang = 'fr' | 'en'
+type Lang = 'fr' | 'en' | 'de'
+type LegalKey = 'impressum' | 'privacy' | 'terms'
 const LOGO = '/logo.png'
 const APP_URL = 'https://app.tas-platform.com'   // ← à remplacer par l'URL réelle de l'app
 
@@ -169,8 +170,41 @@ const content = {
     footerDesc: 'La plateforme SaaS modulaire pour digitaliser les entreprises africaines. Logistique, commerce, éducation, restauration, santé et consulting.',
     rights: 'Tous droits réservés.', made: 'Fait avec ❤️ en Afrique', ready: 'Prêt à démarrer ?', response: 'Réponse garantie sous 24h',
     legal: ['Mentions légales', 'Confidentialité', 'CGU'],
+    delivered: 'Livré', inTransit: 'En transit', popular: 'Populaire',
+    logisticsCards: ['Colis & plis', 'Tracking public', 'Multi-agences', 'Chauffeurs & GPS', 'Clients B2B', 'Bordereaux PDF', 'Comptabilité', 'Journal d’audit'],
+    miniStats: [['5', 'Modules'], ['100%', 'Afrique'], ['3', 'Langues'], ['24/7', 'Support']],
+    consentPre: 'J’accepte que mes données soient utilisées pour traiter ma demande (voir la ',
+    consentLink: 'politique de confidentialité', consentPost: ').',
+    legalPages: {
+      banner: '⚠️ Informations provisoires — entreprise en cours d’immatriculation, ces mentions seront complétées officiellement prochainement.',
+      close: 'Fermer',
+      pages: {
+        impressum: { title: 'Mentions légales', sections: [
+          ['Éditeur / Responsable', 'Raison sociale : [Raison sociale — à compléter]\nAdresse : [Adresse — à compléter]\nRegistre du commerce / n° : [Registre du commerce / n° — à compléter]\nN° de TVA : [N° TVA — à compléter]'],
+          ['Contact', 'E-mail : contact@tas-platform.com'],
+          ['Hébergeur du site / serveur', 'Contabo GmbH, Aschheim, Allemagne'],
+        ] },
+        privacy: { title: 'Politique de confidentialité', sections: [
+          ['Données collectées', 'Via le formulaire de contact / démo, nous collectons : nom, adresse e-mail, numéro de téléphone, entreprise et le contenu de votre message.'],
+          ['Finalité du traitement', 'Ces données servent uniquement à traiter vos demandes de démonstration ou de contact et à y répondre.'],
+          ['Base légale', 'Le traitement repose sur votre consentement et sur notre intérêt légitime à répondre à votre demande (art. 6 RGPD).'],
+          ['Destinataires', 'Les données sont transmises à l’éditeur du site, via son backend hébergé. Elles ne sont ni vendues ni cédées à des tiers à des fins commerciales.'],
+          ['Durée de conservation', 'Vos données sont conservées jusqu’au traitement complet de votre demande, puis pendant un délai raisonnable, avant d’être supprimées.'],
+          ['Vos droits (RGPD)', 'Vous disposez d’un droit d’accès, de rectification, d’effacement, d’opposition et de portabilité de vos données, ainsi que du droit d’introduire une réclamation auprès d’une autorité de contrôle. Pour exercer ces droits : contact@tas-platform.com.'],
+          ['Cookies & polices', 'Ce site n’utilise aucun cookie de suivi ni outil d’analyse tiers. Les polices de caractères sont hébergées localement : aucune donnée n’est transmise à Google (Google Fonts).'],
+        ] },
+        terms: { title: 'Conditions d’utilisation (CGU)', sections: [
+          ['Objet', 'Les présentes conditions régissent l’accès et l’utilisation du site vitrine TAS et des informations qui y sont présentées.'],
+          ['Accès au service', 'Le site est accessible gratuitement. TAS s’efforce d’en assurer la disponibilité, sans garantir une accessibilité ininterrompue.'],
+          ['Propriété intellectuelle', 'L’ensemble des contenus (textes, logos, visuels, marques) est la propriété de TAS ou de ses partenaires et ne peut être reproduit sans autorisation.'],
+          ['Responsabilité', 'Les informations sont fournies à titre indicatif. TAS ne saurait être tenu responsable de l’usage qui en serait fait ni d’éventuelles inexactitudes.'],
+          ['Droit applicable', 'Droit applicable : [à préciser]. Tout litige sera soumis aux juridictions compétentes.'],
+        ] },
+      },
+    },
   },
   en: {} as any,
+  de: {} as any,
 }
 
 // --- Version anglaise (mêmes structures) ---
@@ -298,6 +332,197 @@ content.en = {
   footerDesc: 'The modular SaaS platform to digitize African companies. Logistics, retail, education, food, health and consulting.',
   rights: 'All rights reserved.', made: 'Made with ❤️ in Africa', ready: 'Ready to start?', response: 'Guaranteed reply within 24h',
   legal: ['Legal notice', 'Privacy', 'Terms'],
+  delivered: 'Delivered', inTransit: 'In transit', popular: 'Popular',
+  logisticsCards: ['Parcels & letters', 'Public tracking', 'Multi-branch', 'Drivers & GPS', 'B2B clients', 'PDF waybills', 'Accounting', 'Audit trail'],
+  miniStats: [['5', 'Modules'], ['100%', 'Africa'], ['3', 'Languages'], ['24/7', 'Support']],
+  consentPre: 'I agree that my data may be used to process my request (see the ',
+  consentLink: 'privacy policy', consentPost: ').',
+  legalPages: {
+    banner: '⚠️ Provisional information — company being registered; these notices will be officially completed soon.',
+    close: 'Close',
+    pages: {
+      impressum: { title: 'Legal notice', sections: [
+        ['Publisher / Controller', 'Company name: [Company name — to be completed]\nAddress: [Address — to be completed]\nTrade register / no.: [Trade register / no. — to be completed]\nVAT no.: [VAT no. — to be completed]'],
+        ['Contact', 'Email: contact@tas-platform.com'],
+        ['Website / server hosting', 'Contabo GmbH, Aschheim, Germany'],
+      ] },
+      privacy: { title: 'Privacy policy', sections: [
+        ['Data collected', 'Through the contact / demo form we collect: name, email address, phone number, company and the content of your message.'],
+        ['Purpose of processing', 'This data is used solely to process and respond to your demo or contact requests.'],
+        ['Legal basis', 'Processing is based on your consent and our legitimate interest in responding to your request (Art. 6 GDPR).'],
+        ['Recipients', 'The data is sent to the site publisher via its hosted backend. It is neither sold nor shared with third parties for commercial purposes.'],
+        ['Retention period', 'Your data is kept until your request has been fully processed, then for a reasonable period, before being deleted.'],
+        ['Your rights (GDPR)', 'You have the right to access, rectify, erase, object to and port your data, as well as the right to lodge a complaint with a supervisory authority. To exercise these rights: contact@tas-platform.com.'],
+        ['Cookies & fonts', 'This site uses no tracking cookies and no third-party analytics. Fonts are hosted locally: no data is sent to Google (Google Fonts).'],
+      ] },
+      terms: { title: 'Terms of use', sections: [
+        ['Purpose', 'These terms govern access to and use of the TAS website and the information presented on it.'],
+        ['Access to the service', 'The site is freely accessible. TAS strives to ensure availability but does not guarantee uninterrupted access.'],
+        ['Intellectual property', 'All content (text, logos, visuals, trademarks) is the property of TAS or its partners and may not be reproduced without authorization.'],
+        ['Liability', 'Information is provided for guidance only. TAS cannot be held liable for any use made of it or for possible inaccuracies.'],
+        ['Governing law', 'Governing law: [to be specified]. Any dispute will be submitted to the competent courts.'],
+      ] },
+    },
+  },
+}
+
+// --- Version allemande (mêmes structures) ---
+content.de = {
+  nav: ['Module', 'Sicherheit', 'Preise', 'FAQ', 'Kontakt'],
+  cta: 'Demo anfragen',
+  heroLabel: 'Modulare SaaS-Plattform',
+  heroTitle: 'Steuern Sie Ihr gesamtes Unternehmen über eine einzige Plattform.',
+  heroDesc: 'TAS digitalisiert Ihre Abläufe, Daten und Entscheidungen — Logistik, Handel, Schule, Gastronomie, Gesundheit — mit Modulen, die Sie nach Bedarf aktivieren, entwickelt für Afrika.',
+  heroPrimary: 'Demo anfragen', heroSecondary: 'Preise ansehen',
+  trackLabel: 'Sendung live verfolgen', trackPlaceholder: 'Geben Sie Ihren Sendungscode ein…', trackBtn: 'Verfolgen',
+  heroStats: [['5', 'Branchen'], ['Live', 'TAS Logistics'], ['24 Std.', 'Garantierte Antwort']],
+  trustedBy: 'Sie digitalisieren bereits mit TAS',
+  dashboardTitle: 'TAS · Dashboard',
+  kpis: [['Zugestellte Pakete', '1 284', '+12% diesen Monat'], ['Monatsumsatz', '4,2 Mio. XAF', '+8% ggü. Vorjahr'], ['Aktive Kunden', '347', '+23 neue']],
+  activity: 'Monatliche Aktivität', latest: 'Letzte Sendungen', available: 'Verfügbar', availableNow: 'Jetzt verfügbar', soon: 'Demnächst verfügbar', multiSector: 'Branchenübergreifend',
+  problemLabel: 'Herausforderungen im Feld', problemTitle: 'Ihre aktuellen Tools bremsen Sie aus',
+  problemDesc: 'Papierregister, verstreute Excel-Tabellen, WhatsApp: verstreute, unzuverlässige und nicht konsolidierbare Daten.',
+  problems: [
+    ['Vollständig manuelle Prozesse', 'Papierregister, nicht synchronisiertes Excel, doppelte Eingaben. Jeder Fehler kostet Zeit und Geld.'],
+    ['Keine Echtzeit-Verfolgung', 'Ohne direkten Anruf ist es unmöglich zu wissen, wo eine Lieferung, ein Bestand oder ein Vorgang steht.'],
+    ['Datenverlust und Silos', 'Daten verstreut über WhatsApp, Hefte und Excel. Keine Nachverfolgbarkeit, keine zuverlässige Historie.'],
+    ['Unklare finanzielle Transparenz', 'Schwer zu wissen, was genau reinkommt, rausgeht und wie hoch die tatsächliche Rentabilität ist.'],
+    ['Mehrere Filialen unverwaltbar', 'Jeder Standort arbeitet isoliert. Konsolidierung und Fernsteuerung sind unmöglich.'],
+    ['Nicht für Afrika geeignete Tools', 'Westliche Lösungen sind zu komplex, zu teuer, ohne lokalen Support und Praxisbezug.'],
+  ],
+  solutionLabel: 'Die TAS-Lösung', solutionTitle: 'Eine einzige Plattform, Module für jede Branche',
+  solutionDesc: 'Aktivieren Sie nur die benötigten Module, mit zentralisierten Daten, präzisen Rollen und auswertbaren Berichten.',
+  solutions: [
+    ['Branchenmodule', 'Aktivieren Sie nur, was Sie brauchen. Zahlen Sie nur für das, was Sie nutzen.'],
+    ['Mehrbenutzer', 'Verwalten Sie Ihr gesamtes Team mit individuellen Zugängen und präzisen Rollen.'],
+    ['Mehrere Filialen', 'Mehrere Standorte, ein einziges Dashboard. Konsolidierte Sicht auf alle Abläufe.'],
+    ['Rollen & Berechtigungen', 'Jeder Mitarbeiter sieht genau das, was er braucht – nicht mehr.'],
+    ['Berichte & Exporte', 'Analytische Dashboards, CSV- und PDF-Exporte für Ihre Buchhaltung.'],
+    ['Zentralisierte Daten', 'Alle Ihre Daten an einem Ort, sicher und von überall zugänglich.'],
+  ],
+  modulesLabel: 'Branchenmodule', modulesTitle: 'Wählen Sie Ihr Modul und starten Sie sofort',
+  modulesDesc: 'Spezialisierte, vollständige und eigenständige Module je Branche, die sich miteinander verbinden.',
+  modules: content.fr.modules.map((m, i) => ({ ...m, ...[
+    { tagline: 'Transport, Pakete & Filialen', desc: 'Verwalten Sie Sendungen, Ihr Filialnetz, Fahrer und B2B-Kunden in einer vollständigen, modernen Logistiklösung.', features: ['Paket- & Sendungsverwaltung', 'Öffentliches Echtzeit-Tracking', 'Filialnetz mit mehreren Standorten', 'Fahrer, Fahrzeuge & GPS', 'B2B-Kunden & Rechnungsstellung', 'Automatische PDF-Frachtbriefe', 'Buchhaltung & CSV-Exporte', 'Vollständiges Audit-Protokoll'] },
+    { tagline: 'Apotheke & Gesundheit', desc: 'Mobile App zur Bestellung von Medikamenten (Rezept, Angebot, Lieferung) + Apotheken-Backoffice. Kliniken, Apotheken und Praxen.', features: ['Kunden-App (Bestellung + Rezept)', 'Online-Angebot & Freigabe', 'Zahlung bei Lieferung', 'Apotheke / Backoffice', 'Medizinische Bestände', 'Bestellverfolgung'] },
+    { tagline: 'Handel & Distribution', desc: 'Steuern Sie Geschäfte, Bestände, Verkäufe und Kasse. Entwickelt für Geschäfte, Baumärkte und afrikanische Händler.', features: ['Lagerbestände (mehrere Lager)', 'Kassensystem', 'Lieferantenverwaltung', 'Barcodes & Etiketten', 'Inventuren', 'Verkaufsberichte'] },
+    { tagline: 'Schulverwaltung', desc: 'Vollständige Plattform: Schüler, Klassen, Noten, Anwesenheit und Schulgeldzahlungen zentralisiert.', features: ['Schülerakten', 'Klassen & Stundenpläne', 'Noten & Zeugnisse', 'Anwesenheitsverfolgung', 'Schulgeldzahlungen', 'Kommunikation Schule–Eltern'] },
+    { tagline: 'Gastronomie & Kasse', desc: 'Verwaltungssystem für Restaurants, Fast-Food und Hotels. Bestellungen, Tische, Menüs und digitale Kasse.', features: ['Tische & Bestellungen', 'Dynamische Menüs', 'Kasse & Zahlung', 'Küchenbestände', 'Personalplanung', 'Tagesberichte'] },
+  ][i] })) as ModuleItem[],
+  logisticsLabel: 'TAS Logistics · Fokus', logisticsTitle: 'Die Komplettlösung für die afrikanische Logistik',
+  logisticsDesc: 'Vom Paketeingang bis zur finalen Zustellung: vollständige Nachverfolgbarkeit, mobile Fahrer-App und integrierte Buchhaltung.',
+  logisticsFeatures: ['Durchgängig verfolgbare Sendungen mit Tracking-Code', 'Öffentliches Tracking ohne Kundenkonto', 'Vollständige Verwaltung mehrerer Filialen & Unternehmen', 'Fahrer, Touren, GPS und zugewiesene Lieferungen', 'B2B-Kunden mit konsolidierter monatlicher Rechnung', 'Automatische PDF-Frachtbriefe, Belege und Ablieferungsnachweise', 'Buchhaltung je Filiale mit monatlichem CSV-Export', 'Vollständiges Audit-Protokoll aller Aktionen'],
+  logisticsCta1: 'Mit TAS Logistics starten', logisticsCta2: 'Live-Demo ansehen',
+  securityLabel: 'Sicherheit & Vertrauen', securityTitle: 'Ihre Daten isoliert, verschlüsselt, nachvollziehbar',
+  securityDesc: 'Sicherheit ist keine Option: Jedes Unternehmen ist strikt getrennt, und alles wird protokolliert.',
+  security: [
+    ['Strikte Trennung je Kunde', 'Jedes Unternehmen sieht NUR seine Daten (Row-Level Security). Kein Mandant greift auf die eines anderen zu.'],
+    ['Verschlüsselung sensibler Daten', 'Passwörter und Verbindungen verschlüsselt. Durchgängige HTTPS-Übertragung.'],
+    ['Dedizierte Datenbank (Option)', 'Hosten Sie Ihre Daten auf einer separaten Datenbank — Ihrer oder unserer — für physische Trennung.'],
+    ['Feingranulare Berechtigungen', 'Jeder Mitarbeiter greift nur auf seinen Bereich zu (Stadt, Filiale, eigene Daten).'],
+    ['Vollständiges Audit-Protokoll', 'Wer hat was wann getan. Jede kritische Aktion wird protokolliert und aufbewahrt.'],
+    ['Regelmäßige Backups', 'Ihre Daten gesichert und wiederherstellbar. Kontinuität gewährleistet.'],
+  ],
+  pricingLabel: 'Preise', pricingTitle: 'Ein einfacher Preis, der mit Ihnen wächst',
+  pricingDesc: 'Klein anfangen, Module und Filialen in Ihrem Tempo hinzufügen. Ohne versteckte Bindung.',
+  billMonthly: 'Monatlich', billAnnual: 'Jährlich', annualNote: '2 Monate gratis', perMonth: 'XAF / Monat', billedAnnual: 'jährlich abgerechnet',
+  plans: [
+    { id: 'starter', name: 'Starter', tagline: 'Kleinstunternehmen & Start', m: '25 000', y: '21 000', popular: false, cta: 'Starter wählen', features: ['1 Modul nach Wahl', '1 Filiale', 'Bis zu 3 Benutzer', 'Gemeinsame Datenbank + TAS-Subdomain', 'Öffentliches Tracking & PDF', 'E-Mail-Support'] },
+    { id: 'business', name: 'Business', tagline: 'KMU mit mehreren Standorten', m: '80 000', y: '67 000', popular: true, cta: 'Business wählen', features: ['1 Modul', 'Unbegrenzte Filialen', 'Bis zu 15 Benutzer', 'Alle Berichte & Exporte', 'Vollständiges RBAC (Rollen & Bereich)', 'Mobile App (Fahrer/Außendienst)', 'Priorisierter Support'] },
+    { id: 'pro', name: 'Pro', tagline: 'Etablierte Unternehmen', m: '200 000', y: '167 000', popular: false, cta: 'Pro wählen', features: ['1 Modul', 'Unbegrenzte Benutzer', 'Dedizierte Datenbank', 'Eigene Domain / Subdomain', 'SMS-Benachrichtigungen', 'Onboarding + Schulung', 'SLA & dedizierter Support'] },
+  ],
+  enterprise: { name: 'Enterprise', tagline: 'Gruppen & mehrere Module', price: 'Auf Anfrage', cta: 'Kontakt aufnehmen', features: ['Mehrere Module', 'Maßgeschneiderte Integrationen', 'Dediziertes Hosting (bei Ihnen oder uns)', 'Erweitertes SLA & Support'] },
+  addonsTitle: 'Optionen & Erweiterungen',
+  addons: [['Zusätzliches Modul', '+50% des Plans'], ['Dedizierte Datenbank', '+50 000 XAF/Monat'], ['Eigene Domain', '+15 000 XAF/Monat'], ['SMS-/Benachrichtigungspaket', 'nach Verbrauch'], ['Schulung & Datenübernahme', 'einmalige Pauschale'], ['Premium-Support 24/7', 'auf Anfrage']],
+  pricingFoot: 'Zahlung per Mobile Money (OM/MoMo) oder Karte. Preise netto, Richtwerte — angepasst an Ihr Volumen.',
+  testiLabel: 'Kundenstimmen', testiTitle: 'Was erste Unternehmen sagen',
+  testimonials: [
+    ['Vor TAS haben wir Pakete in Heften verfolgt. Heute ist alles nachvollziehbar und unsere Kunden verfolgen online.', 'Betriebsleiter', 'Transportunternehmen · Douala'],
+    ['Die Mehrfilialfunktion hat alles verändert: Ich steuere meine 3 Standorte über ein einziges Dashboard.', 'Direktorin', 'Distributionsnetz · Yaoundé'],
+    ['Das TAS-Team versteht die afrikanische Praxis. Schnelle Einführung, reaktionsschneller Support.', 'Geschäftsführer', 'Logistik-KMU · Kamerun'],
+  ],
+  consultingLabel: 'TAS Consulting', consultingTitle: 'Beratung zur Transformation Ihrer Prozesse — auch ohne Plattform',
+  consultingDesc: 'TAS begleitet auch Unternehmen, die zunächst ihre Abläufe optimieren, ihre Daten besser nutzen oder Aufgaben automatisieren möchten.',
+  consultingItems: [
+    ['Prozessoptimierung', 'Interne Prozesse abbilden, vereinfachen und verbessern, um Verzögerungen, Dopplungen und Verluste zu reduzieren.'],
+    ['Datenmanagement & Reporting', 'Ihre Daten strukturieren, Dashboards erstellen und zuverlässige Berichte erzeugen.'],
+    ['Operative Automatisierung', 'Wiederkehrende Aufgaben automatisieren, um Zeit zu sparen und Abläufe zuverlässiger zu machen.'],
+  ],
+  consultingCta: 'Mit einem Berater sprechen',
+  valueLabel: 'Unser Mehrwert', valueTitle: 'Eine für die afrikanische Praxis entwickelte Plattform',
+  values: [
+    ['An Afrika angepasst', 'Entwickelt für afrikanische Gegebenheiten: Konnektivität, lokale Währungen, Geschäftspraktiken.'],
+    ['Flexible Lösung', 'Aktivieren Sie nützliche Module. Wachsen Sie in Ihrem Tempo, ohne Zwang.'],
+    ['Gesicherte Daten', 'Zentralisierte, verschlüsselte, gesicherte Daten. Überall verfügbar.'],
+    ['Null manuelle Fehler', 'Digitale Prozesse eliminieren Eingabefehler und Verluste.'],
+    ['Vollständige Nachverfolgbarkeit', 'Jeder Vorgang erfasst. Finden Sie jede Transaktion wieder.'],
+    ['Klare Finanzsicht', 'Dashboards, automatische Berichte und Exporte zur Steuerung.'],
+    ['Gesteigerte Produktivität', 'Automatisieren Sie wiederkehrende Aufgaben. Konzentrieren Sie sich auf den Mehrwert.'],
+    ['Lokale Begleitung', 'Ein Team in Afrika, das Ihre Herausforderungen versteht und Sie langfristig begleitet.'],
+  ],
+  missionLabel: 'Mission & Vision', missionTitle: 'Die digitale Transformation afrikanischer Unternehmen begleiten',
+  missionQuote: 'Afrikanische Unternehmen bei ihrer digitalen Transformation mit einfachen, leistungsstarken und an ihre operative Realität angepassten Lösungen begleiten.',
+  vision: 'Eine Referenz für modulare SaaS/ERP-Lösungen in Afrika werden.',
+  howLabel: 'So funktioniert es', howTitle: 'Eine begleitete Einführung, Schritt für Schritt',
+  howSteps: [
+    ['Diagnose', 'Wir analysieren Ihre Prozesse, Herausforderungen und Ziele, um die ideale Konfiguration vorzuschlagen.'],
+    ['Modulauswahl', 'Wählen Sie das passende Modul für Ihre Branche. Beginnen Sie mit einem, fügen Sie später weitere hinzu.'],
+    ['Konfiguration', 'Einrichtung Ihres Bereichs: Filialen, Benutzer, Produkte, Tarife.'],
+    ['Zugänge anlegen', 'Fügen Sie Ihre Mitarbeiter mit ihren Rollen und Berechtigungen hinzu.'],
+    ['Schulung & Produktivstart', 'Schulung Ihrer Teams und begleiteter Start, ohne Reibung.'],
+    ['Laufende Betreuung', 'Reaktionsschneller Support, regelmäßige Updates, Weiterentwicklung nach Ihrem Feedback.'],
+  ],
+  faqLabel: 'Häufige Fragen', faqTitle: 'Alles, was Sie wissen müssen',
+  faqs: [
+    ['Wie schnell kann ich starten?', 'Je nach Modul und Organisation dauert der Start einige Tage bis zwei Wochen: Konfiguration, Zugänge anlegen, Schulung und anschließend begleiteter Produktivstart.'],
+    ['Sind meine Daten isoliert und sicher?', 'Ja. Jedes Unternehmen ist strikt getrennt (Row-Level Security): Kein Kunde sieht die Daten eines anderen. Verschlüsselte Daten, Audit-Protokoll, Backups und optional eine dedizierte Datenbank.'],
+    ['Kann ich den Plan wechseln oder Module hinzufügen?', 'Ja, jederzeit. Sie beginnen mit einem Plan/Modul und stufen hoch oder aktivieren weitere Module nach Bedarf.'],
+    ['Funktioniert es mit schwacher Verbindung?', 'Die Plattform ist für die afrikanische Praxis optimiert. Die mobile App läuft auf dem Smartphone; das öffentliche Tracking ist leichtgewichtig und ohne Konto zugänglich.'],
+    ['Welche Zahlungsmittel akzeptieren Sie?', 'Mobile Money (Orange Money, MTN MoMo), Überweisung und Karte. Monatliche oder jährliche Abrechnung (2 Monate gratis bei jährlicher Zahlung).'],
+    ['Gibt es eine Bindung?', 'Keine versteckte Bindung. Starten Sie mit einer kostenlosen Demo und wählen Sie dann monatlich oder jährlich.'],
+  ],
+  demoLabel: 'Demonstration', demoTitle: 'Erleben Sie TAS in Aktion, kostenlos',
+  demoDesc: 'Füllen Sie dieses Formular aus: Unser Team kontaktiert Sie innerhalb von 24 Std. für eine persönliche Demo.',
+  demoPerks: ['Persönliche Demo', 'Ohne Bindung', 'Lokale Begleitung'],
+  form: { name: 'Vollständiger Name', company: 'Unternehmen', sector: 'Branche', phone: 'Telefon', email: 'E-Mail', message: 'Nachricht', submit: 'Anfrage senden', sending: 'Senden…', sent: 'Danke! Ihre Anfrage wurde gesendet. Wir melden uns in Kürze.', error: 'Senden momentan nicht möglich. Bitte erneut versuchen oder per E-Mail/WhatsApp kontaktieren.' },
+  sectors: ['Logistik / Transport', 'Handel / Distribution', 'Bildung', 'Gastronomie / Hotellerie', 'Gesundheit / Apotheke', 'Beratung / Optimierung', 'Sonstige'],
+  contactLabel: 'Kontakt', contactTitle: 'Sprechen wir über Ihr Projekt',
+  contactDesc: 'Unser Team beantwortet Ihre Fragen, organisiert eine Demo oder bespricht Ihre spezifischen Anforderungen.',
+  footerDesc: 'Die modulare SaaS-Plattform zur Digitalisierung afrikanischer Unternehmen. Logistik, Handel, Bildung, Gastronomie, Gesundheit und Beratung.',
+  rights: 'Alle Rechte vorbehalten.', made: 'Mit ❤️ in Afrika erstellt', ready: 'Bereit zu starten?', response: 'Garantierte Antwort innerhalb von 24 Std.',
+  legal: ['Impressum', 'Datenschutz', 'AGB'],
+  delivered: 'Zugestellt', inTransit: 'Unterwegs', popular: 'Beliebt',
+  logisticsCards: ['Pakete & Briefe', 'Öffentliches Tracking', 'Mehrere Filialen', 'Fahrer & GPS', 'B2B-Kunden', 'PDF-Frachtbriefe', 'Buchhaltung', 'Audit-Protokoll'],
+  miniStats: [['5', 'Module'], ['100%', 'Afrika'], ['3', 'Sprachen'], ['24/7', 'Support']],
+  consentPre: 'Ich stimme zu, dass meine Daten zur Bearbeitung meiner Anfrage verwendet werden (siehe ',
+  consentLink: 'Datenschutzerklärung', consentPost: ').',
+  legalPages: {
+    banner: '⚠️ Vorläufige Angaben — Unternehmen in Gründung; diese Angaben werden demnächst offiziell vervollständigt.',
+    close: 'Schließen',
+    pages: {
+      impressum: { title: 'Impressum', sections: [
+        ['Herausgeber / Verantwortlicher', 'Firma: [Firmenname — zu ergänzen]\nAnschrift: [Anschrift — zu ergänzen]\nHandelsregister / Nr.: [Handelsregister / Nr. — zu ergänzen]\nUSt-IdNr.: [USt-IdNr. — zu ergänzen]'],
+        ['Kontakt', 'E-Mail: contact@tas-platform.com'],
+        ['Hosting der Website / des Servers', 'Contabo GmbH, Aschheim, Deutschland'],
+      ] },
+      privacy: { title: 'Datenschutzerklärung', sections: [
+        ['Erhobene Daten', 'Über das Kontakt- / Demoformular erheben wir: Name, E-Mail-Adresse, Telefonnummer, Unternehmen und den Inhalt Ihrer Nachricht.'],
+        ['Zweck der Verarbeitung', 'Diese Daten dienen ausschließlich der Bearbeitung und Beantwortung Ihrer Demo- oder Kontaktanfragen.'],
+        ['Rechtsgrundlage', 'Die Verarbeitung beruht auf Ihrer Einwilligung und unserem berechtigten Interesse, Ihre Anfrage zu beantworten (Art. 6 DSGVO).'],
+        ['Empfänger', 'Die Daten werden an den Betreiber der Website über sein gehostetes Backend übermittelt. Sie werden nicht zu kommerziellen Zwecken an Dritte verkauft oder weitergegeben.'],
+        ['Speicherdauer', 'Ihre Daten werden bis zur vollständigen Bearbeitung Ihrer Anfrage und anschließend für einen angemessenen Zeitraum gespeichert und danach gelöscht.'],
+        ['Ihre Rechte (DSGVO)', 'Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Widerspruch und Datenübertragbarkeit sowie das Recht auf Beschwerde bei einer Aufsichtsbehörde. Zur Ausübung dieser Rechte: contact@tas-platform.com.'],
+        ['Cookies & Schriftarten', 'Diese Website verwendet keine Tracking-Cookies und keine Analyse-Tools von Drittanbietern. Die Schriftarten werden lokal gehostet: Es werden keine Daten an Google (Google Fonts) übertragen.'],
+      ] },
+      terms: { title: 'Allgemeine Geschäftsbedingungen (AGB)', sections: [
+        ['Gegenstand', 'Diese Bedingungen regeln den Zugang zur und die Nutzung der TAS-Website sowie der dort dargestellten Informationen.'],
+        ['Zugang zum Dienst', 'Die Website ist kostenlos zugänglich. TAS bemüht sich um Verfügbarkeit, garantiert jedoch keinen ununterbrochenen Zugang.'],
+        ['Geistiges Eigentum', 'Alle Inhalte (Texte, Logos, Grafiken, Marken) sind Eigentum von TAS oder seinen Partnern und dürfen ohne Genehmigung nicht vervielfältigt werden.'],
+        ['Haftung', 'Die Informationen dienen nur zur Orientierung. TAS haftet nicht für deren Verwendung oder etwaige Ungenauigkeiten.'],
+        ['Anwendbares Recht', 'Anwendbares Recht: [zu präzisieren]. Für Streitigkeiten sind die zuständigen Gerichte zuständig.'],
+      ] },
+    },
+  },
 }
 
 const problemIcons = [FileText, Search, ServerCrash, TrendingDown, Building2, AlertTriangle]
@@ -326,8 +551,9 @@ function Header({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
           </nav>
           <div className="hidden lg:flex items-center gap-3">
             <div className="inline-flex rounded-xl bg-slate-100 p-1">
-              <button onClick={() => setLang('fr')} className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${lang === 'fr' ? 'bg-white text-blue-700 shadow-soft' : 'text-slate-500 hover:text-slate-700'}`}>FR</button>
-              <button onClick={() => setLang('en')} className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${lang === 'en' ? 'bg-white text-blue-700 shadow-soft' : 'text-slate-500 hover:text-slate-700'}`}>EN</button>
+              {(['fr', 'en', 'de'] as Lang[]).map((l) => (
+                <button key={l} onClick={() => setLang(l)} className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${lang === l ? 'bg-white text-blue-700 shadow-soft' : 'text-slate-500 hover:text-slate-700'}`}>{l.toUpperCase()}</button>
+              ))}
             </div>
             <a href="#demo" className="btn-primary px-5 py-2.5">{t.cta}</a>
           </div>
@@ -337,8 +563,9 @@ function Header({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
           <div className="pt-3 border-t border-slate-100 space-y-1">
             {t.nav.map((label: string, i: number) => <a key={label} href={`#${navIds[i]}`} className="block px-3 py-3 rounded-xl text-slate-700 hover:bg-blue-50" onClick={() => setOpen(false)}>{label}</a>)}
             <div className="flex gap-2 pt-3">
-              <button onClick={() => setLang('fr')} className={`flex-1 px-3 py-2 rounded-xl text-sm font-bold ${lang === 'fr' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700'}`}>FR</button>
-              <button onClick={() => setLang('en')} className={`flex-1 px-3 py-2 rounded-xl text-sm font-bold ${lang === 'en' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700'}`}>EN</button>
+              {(['fr', 'en', 'de'] as Lang[]).map((l) => (
+                <button key={l} onClick={() => setLang(l)} className={`flex-1 px-3 py-2 rounded-xl text-sm font-bold ${lang === l ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700'}`}>{l.toUpperCase()}</button>
+              ))}
             </div>
             <a href="#demo" className="btn-primary w-full mt-3 py-3" onClick={() => setOpen(false)}>{t.cta}</a>
           </div>
@@ -384,14 +611,14 @@ function Hero({ lang }: { lang: Lang }) {
               ))}
             </div>
           </div>
-          <DashMockup t={t} lang={lang} />
+          <DashMockup t={t} />
         </div>
       </div>
     </section>
   )
 }
 
-function DashMockup({ t, lang }: { t: any; lang: Lang }) {
+function DashMockup({ t }: { t: any }) {
   return (
     <div className="relative w-full max-w-[540px] mx-auto lg:mx-0 animate-fade-up delay-300">
       <div className="bg-white rounded-3xl shadow-strong border border-slate-200 overflow-hidden">
@@ -414,7 +641,7 @@ function DashMockup({ t, lang }: { t: any; lang: Lang }) {
             {['TAS-20241201-XKPQ', 'TAS-20241201-RMJT', 'TAS-20241201-HNAZ'].map((code, i) => (
               <div key={code} className="flex items-center justify-between px-4 py-2.5 border-b border-slate-50 last:border-0">
                 <div className="flex items-center gap-2.5"><div className="w-6 h-6 bg-blue-50 rounded-lg flex items-center justify-center shrink-0"><Truck size={11} className="text-blue-600" /></div><div><p className="font-mono text-[10px] font-medium text-slate-700">{code}</p><p className="text-[9px] text-slate-400">Douala → Yaoundé</p></div></div>
-                <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${i === 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'}`}>{i === 0 ? (lang === 'fr' ? 'Livré' : 'Delivered') : (lang === 'fr' ? 'En transit' : 'In transit')}</span>
+                <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${i === 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'}`}>{i === 0 ? t.delivered : t.inTransit}</span>
               </div>
             ))}
           </div>
@@ -462,7 +689,7 @@ function Modules({ lang }: { lang: Lang }) {
 function Logistics({ lang }: { lang: Lang }) {
   const t = content[lang]
   return (
-    <section id="logistics-focus" className="py-24 bg-white"><div className="max-w-7xl mx-auto px-4 sm:px-6"><div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start"><div className="space-y-7"><Label>{t.logisticsLabel}</Label><div className="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-display font-bold"><CheckCircle2 size={12} />{t.availableNow}</div><h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-[42px] text-slate-900 leading-tight">{t.logisticsTitle}</h2><p className="font-body text-slate-500 text-lg leading-relaxed">{t.logisticsDesc}</p><div className="space-y-3">{t.logisticsFeatures.map((item: string) => <div key={item} className="flex items-start gap-3"><div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5"><div className="w-1.5 h-1.5 rounded-full bg-blue-600" /></div><span className="font-body text-slate-700 text-[14px]">{item}</span></div>)}</div><div className="flex flex-col sm:flex-row gap-3 pt-2"><a href="#demo" className="btn-primary py-3.5 px-7">{t.logisticsCta1}<ArrowRight size={16} /></a><a href="#contact" className="btn-outline py-3.5 px-6">{t.logisticsCta2}</a></div></div><div className="grid grid-cols-2 gap-4">{['Colis & plis', 'Tracking public', 'Multi-agences', 'Chauffeurs & GPS', 'Clients B2B', 'Bordereaux PDF', 'Comptabilité', 'Journal d’audit'].map((label, i) => { const Icon = details[i]; return <div key={label} className="bg-white rounded-2xl border border-slate-100 p-5 shadow-soft hover:shadow-medium transition-all"><div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center mb-3"><Icon size={18} className="text-blue-600" /></div><h4 className="font-display font-semibold text-slate-900 text-sm mb-1">{label}</h4></div> })}</div></div></div></section>
+    <section id="logistics-focus" className="py-24 bg-white"><div className="max-w-7xl mx-auto px-4 sm:px-6"><div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start"><div className="space-y-7"><Label>{t.logisticsLabel}</Label><div className="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-display font-bold"><CheckCircle2 size={12} />{t.availableNow}</div><h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-[42px] text-slate-900 leading-tight">{t.logisticsTitle}</h2><p className="font-body text-slate-500 text-lg leading-relaxed">{t.logisticsDesc}</p><div className="space-y-3">{t.logisticsFeatures.map((item: string) => <div key={item} className="flex items-start gap-3"><div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5"><div className="w-1.5 h-1.5 rounded-full bg-blue-600" /></div><span className="font-body text-slate-700 text-[14px]">{item}</span></div>)}</div><div className="flex flex-col sm:flex-row gap-3 pt-2"><a href="#demo" className="btn-primary py-3.5 px-7">{t.logisticsCta1}<ArrowRight size={16} /></a><a href="#contact" className="btn-outline py-3.5 px-6">{t.logisticsCta2}</a></div></div><div className="grid grid-cols-2 gap-4">{t.logisticsCards.map((label: string, i: number) => { const Icon = details[i]; return <div key={label} className="bg-white rounded-2xl border border-slate-100 p-5 shadow-soft hover:shadow-medium transition-all"><div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center mb-3"><Icon size={18} className="text-blue-600" /></div><h4 className="font-display font-semibold text-slate-900 text-sm mb-1">{label}</h4></div> })}</div></div></div></section>
   )
 }
 
@@ -497,7 +724,7 @@ function Pricing({ lang }: { lang: Lang }) {
         <div className="grid lg:grid-cols-4 gap-6 items-stretch">
           {t.plans.map((p: any) => (
             <div key={p.id} className={`relative rounded-3xl p-7 flex flex-col transition-all duration-300 ${p.popular ? 'bg-brand text-white shadow-glow lg:-translate-y-3 ring-1 ring-blue-500/40' : 'bg-white text-navy-900 border border-slate-200 shadow-card hover:shadow-medium hover:-translate-y-1'}`}>
-              {p.popular && <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-300 text-navy-900 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-medium">{lang === 'fr' ? 'Populaire' : 'Popular'}</span>}
+              {p.popular && <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-300 text-navy-900 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-medium">{t.popular}</span>}
               <h3 className="font-display font-bold text-xl">{p.name}</h3>
               <p className={`text-sm mt-1 ${p.popular ? 'text-blue-100' : 'text-slate-500'}`}>{p.tagline}</p>
               <div className="mt-5 mb-1 flex items-end gap-1"><span className="font-display font-extrabold text-4xl">{annual ? p.y : p.m}</span></div>
@@ -553,7 +780,7 @@ function ValueMission({ lang }: { lang: Lang }) {
   return (
     <>
       <section id="valeur" className="py-24 bg-white"><div className="max-w-7xl mx-auto px-4 sm:px-6"><div className="reveal text-center max-w-3xl mx-auto mb-14 space-y-4"><Label>{t.valueLabel}</Label><h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-[42px] text-slate-900">{t.valueTitle}</h2></div><div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">{t.values.map(([title, desc]: string[], i: number) => <InfoCard key={title} icon={valueIcons[i]} title={title} desc={desc} />)}</div></div></section>
-      <section id="mission" className="py-24 bg-blue-700 text-white relative overflow-hidden"><div className="max-w-7xl mx-auto px-4 sm:px-6"><div className="grid lg:grid-cols-2 gap-12 items-center"><div className="space-y-5"><span className="inline-flex items-center gap-2 text-white font-display font-semibold text-xs tracking-widest uppercase bg-white/10 border border-white/15 rounded-full px-4 py-1.5">{t.missionLabel}</span><h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-[42px] leading-tight">{t.missionTitle}</h2><blockquote className="font-body text-blue-100 text-xl leading-relaxed border-l-4 border-white/40 pl-5">“{t.missionQuote}”</blockquote></div><div className="space-y-5"><div className="bg-white/10 border border-white/20 rounded-2xl p-6 backdrop-blur-sm"><p className="font-mono text-blue-200 text-xs tracking-widest uppercase mb-3">Vision</p><p className="font-display font-semibold text-white text-xl leading-snug">“{t.vision}”</p></div><div className="grid grid-cols-2 gap-4">{[['5', lang === 'fr' ? 'Modules' : 'Modules'], ['100%', 'Afrique'], ['2', lang === 'fr' ? 'Langues' : 'Languages'], ['24/7', 'Support']].map(([n, l]) => <div key={l} className="bg-white/10 border border-white/15 rounded-2xl p-4 text-center backdrop-blur-sm"><p className="font-display font-extrabold text-3xl text-white mb-1">{n}</p><p className="font-body text-blue-200 text-xs">{l}</p></div>)}</div></div></div></div></section>
+      <section id="mission" className="py-24 bg-blue-700 text-white relative overflow-hidden"><div className="max-w-7xl mx-auto px-4 sm:px-6"><div className="grid lg:grid-cols-2 gap-12 items-center"><div className="space-y-5"><span className="inline-flex items-center gap-2 text-white font-display font-semibold text-xs tracking-widest uppercase bg-white/10 border border-white/15 rounded-full px-4 py-1.5">{t.missionLabel}</span><h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-[42px] leading-tight">{t.missionTitle}</h2><blockquote className="font-body text-blue-100 text-xl leading-relaxed border-l-4 border-white/40 pl-5">“{t.missionQuote}”</blockquote></div><div className="space-y-5"><div className="bg-white/10 border border-white/20 rounded-2xl p-6 backdrop-blur-sm"><p className="font-mono text-blue-200 text-xs tracking-widest uppercase mb-3">Vision</p><p className="font-display font-semibold text-white text-xl leading-snug">“{t.vision}”</p></div><div className="grid grid-cols-2 gap-4">{t.miniStats.map(([n, l]: string[]) => <div key={l} className="bg-white/10 border border-white/15 rounded-2xl p-4 text-center backdrop-blur-sm"><p className="font-display font-extrabold text-3xl text-white mb-1">{n}</p><p className="font-body text-blue-200 text-xs">{l}</p></div>)}</div></div></div></div></section>
     </>
   )
 }
@@ -579,18 +806,20 @@ function Faq({ lang }: { lang: Lang }) {
   )
 }
 
-function DemoForm({ lang }: { lang: Lang }) {
+function DemoForm({ lang, onPrivacy }: { lang: Lang; onPrivacy: () => void }) {
   const t = content[lang]
   const [f, setF] = useState({ name: '', company: '', sector: '', phone: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
   const [err, setErr] = useState(false)
+  const [consent, setConsent] = useState(false)
   const up = (k: string, v: string) => setF((p) => ({ ...p, [k]: v }))
   const lead = () => `Demande de démo TAS\n\nNom: ${f.name}\nEntreprise: ${f.company}\nSecteur: ${f.sector}\nTéléphone: ${f.phone}\nEmail: ${f.email}\nMessage: ${f.message}`
   // Backend TAS (endpoint public de contact). Configurable via VITE_API_BASE.
   const API_BASE = ((import.meta as any).env?.VITE_API_BASE as string) || 'https://app.tondomaine.com'
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!consent) return
     setSending(true); setErr(false)
     try {
       const res = await fetch(`${API_BASE}/api/public/contact`, {
@@ -619,7 +848,11 @@ function DemoForm({ lang }: { lang: Lang }) {
         <div className="grid sm:grid-cols-2 gap-4"><select className="input-field" value={f.sector} onChange={(e) => up('sector', e.target.value)}><option value="">{t.form.sector}</option>{t.sectors.map((s: string) => <option key={s}>{s}</option>)}</select><input className="input-field" placeholder={t.form.phone} value={f.phone} onChange={(e) => up('phone', e.target.value)} required /></div>
         <input className="input-field" placeholder={t.form.email} type="email" value={f.email} onChange={(e) => up('email', e.target.value)} />
         <textarea className="input-field min-h-[120px]" placeholder={t.form.message} value={f.message} onChange={(e) => up('message', e.target.value)} />
-        <button className="btn-primary w-full py-4" type="submit" disabled={sending}><MessageCircle size={17} /> {sending ? t.form.sending : t.form.submit}</button>
+        <label className="flex items-start gap-3 text-sm text-slate-600 cursor-pointer select-none">
+          <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} required className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300 text-blue-600 focus:ring-blue-500/30 accent-blue-600" />
+          <span className="font-body leading-relaxed">{t.consentPre}<button type="button" onClick={onPrivacy} className="text-blue-600 underline hover:text-blue-700">{t.consentLink}</button>{t.consentPost}</span>
+        </label>
+        <button className="btn-primary w-full py-4" type="submit" disabled={sending || !consent}><MessageCircle size={17} /> {sending ? t.form.sending : t.form.submit}</button>
         <a className="flex items-center justify-center gap-2 text-sm text-slate-500 hover:text-blue-600" href={`mailto:${contact.email}?subject=${encodeURIComponent('Demande de démo TAS')}&body=${encodeURIComponent(lead())}`}><Mail size={15} /> {contact.email}</a>
         {sent && <div className="flex items-center gap-2 bg-emerald-50 border border-emerald-100 text-emerald-700 rounded-xl px-4 py-3 text-sm"><CheckCircle2 size={16} />{t.form.sent}</div>}
         {err && <div className="flex items-center gap-2 bg-red-50 border border-red-100 text-red-700 rounded-xl px-4 py-3 text-sm"><Mail size={16} />{t.form.error}</div>}
@@ -635,16 +868,53 @@ function Contact({ lang }: { lang: Lang }) {
   )
 }
 
-function Footer({ lang }: { lang: Lang }) {
+function Footer({ lang, onLegal }: { lang: Lang; onLegal: (k: LegalKey) => void }) {
   const t = content[lang]
   const year = new Date().getFullYear()
+  const legalKeys: LegalKey[] = ['impressum', 'privacy', 'terms']
   return (
-    <footer className="bg-slate-900 text-slate-400"><div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-8"><div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12"><div className="space-y-5"><Logo className="h-12 brightness-0 invert" /><p className="font-body text-slate-500 text-sm leading-relaxed">{t.footerDesc}</p><div className="flex items-center gap-2"><div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" /><span className="font-body text-emerald-400 text-xs">Actif au Cameroun · Afrique</span></div></div><div><p className="font-display font-semibold text-white text-sm mb-5">Modules</p><ul className="space-y-3">{['TAS Logistics', 'TAS Health', 'TAS Retail', 'TAS School', 'TAS Food', 'TAS Consulting'].map(m => <li key={m}><a href={m === 'TAS Consulting' ? '#consulting' : '#modules'} className="font-body text-slate-500 hover:text-white text-sm transition-colors flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-blue-600/60" />{m}</a></li>)}</ul></div><div><p className="font-display font-semibold text-white text-sm mb-5">Navigation</p><ul className="space-y-3">{t.nav.map((label: string, i: number) => <li key={label}><a href={`#${navIds[i]}`} className="font-body text-slate-500 hover:text-white text-sm transition-colors flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-blue-600/60" />{label}</a></li>)}</ul></div><div><p className="font-display font-semibold text-white text-sm mb-5">Contact</p><ul className="space-y-4"><li><a href={`mailto:${contact.email}`} className="flex items-center gap-3 hover:text-white transition-colors"><Mail size={15} className="text-blue-500" />{contact.email}</a></li><li><a href={`tel:${contact.phone.replace(/\s/g, '')}`} className="flex items-center gap-3 hover:text-white transition-colors"><Phone size={15} className="text-blue-500" />{contact.phone}</a></li><li><div className="flex items-center gap-3"><MapPin size={15} className="text-blue-500" />{contact.location}</div></li></ul></div></div><div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"><p className="font-body text-slate-600 text-sm">© {year} TAS Platform. {t.rights}</p><div className="flex items-center gap-4">{t.legal.map((l: string) => <a key={l} href="#" className="text-xs text-slate-500 hover:text-white transition-colors">{l}</a>)}<span className="text-xs font-body text-slate-600">{t.made}</span></div></div></div></footer>
+    <footer className="bg-slate-900 text-slate-400"><div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-8"><div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12"><div className="space-y-5"><Logo className="h-12 brightness-0 invert" /><p className="font-body text-slate-500 text-sm leading-relaxed">{t.footerDesc}</p><div className="flex items-center gap-2"><div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" /><span className="font-body text-emerald-400 text-xs">Actif au Cameroun · Afrique</span></div></div><div><p className="font-display font-semibold text-white text-sm mb-5">Modules</p><ul className="space-y-3">{['TAS Logistics', 'TAS Health', 'TAS Retail', 'TAS School', 'TAS Food', 'TAS Consulting'].map(m => <li key={m}><a href={m === 'TAS Consulting' ? '#consulting' : '#modules'} className="font-body text-slate-500 hover:text-white text-sm transition-colors flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-blue-600/60" />{m}</a></li>)}</ul></div><div><p className="font-display font-semibold text-white text-sm mb-5">Navigation</p><ul className="space-y-3">{t.nav.map((label: string, i: number) => <li key={label}><a href={`#${navIds[i]}`} className="font-body text-slate-500 hover:text-white text-sm transition-colors flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-blue-600/60" />{label}</a></li>)}</ul></div><div><p className="font-display font-semibold text-white text-sm mb-5">Contact</p><ul className="space-y-4"><li><a href={`mailto:${contact.email}`} className="flex items-center gap-3 hover:text-white transition-colors"><Mail size={15} className="text-blue-500" />{contact.email}</a></li><li><a href={`tel:${contact.phone.replace(/\s/g, '')}`} className="flex items-center gap-3 hover:text-white transition-colors"><Phone size={15} className="text-blue-500" />{contact.phone}</a></li><li><div className="flex items-center gap-3"><MapPin size={15} className="text-blue-500" />{contact.location}</div></li></ul></div></div><div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"><p className="font-body text-slate-600 text-sm">© {year} TAS Platform. {t.rights}</p><div className="flex items-center gap-4">{t.legal.map((l: string, i: number) => <button key={l} type="button" onClick={() => onLegal(legalKeys[i])} className="text-xs text-slate-500 hover:text-white transition-colors">{l}</button>)}<span className="text-xs font-body text-slate-600">{t.made}</span></div></div></div></footer>
+  )
+}
+
+function LegalOverlay({ lang, page, onClose }: { lang: Lang; page: LegalKey | null; onClose: () => void }) {
+  const t = content[lang]
+  useEffect(() => {
+    if (!page) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = '' }
+  }, [page, onClose])
+  if (!page) return null
+  const lp = t.legalPages
+  const data = lp.pages[page]
+  return (
+    <div className="fixed inset-0 z-[100] flex items-stretch sm:items-center justify-center sm:p-6" role="dialog" aria-modal="true" aria-label={data.title}>
+      <div className="absolute inset-0 bg-navy-900/70 backdrop-blur-sm animate-fade-in" onClick={onClose} />
+      <div className="relative w-full sm:max-w-2xl h-full sm:h-auto sm:max-h-[85vh] bg-white sm:rounded-3xl shadow-strong flex flex-col overflow-hidden animate-fade-up">
+        <div className="flex items-center justify-between gap-4 px-6 py-5 border-b border-slate-100 shrink-0">
+          <h2 className="font-display font-bold text-slate-900 text-xl">{data.title}</h2>
+          <button onClick={onClose} aria-label={lp.close} className="p-2 rounded-xl hover:bg-slate-100 text-slate-600 transition-colors"><X size={22} /></button>
+        </div>
+        <div className="overflow-y-auto px-6 py-6 space-y-6">
+          <div className="bg-amber-50 border border-amber-200 text-amber-800 rounded-xl px-4 py-3 text-sm font-body leading-relaxed">{lp.banner}</div>
+          {data.sections.map(([h, body]: string[]) => (
+            <div key={h}>
+              <h3 className="font-display font-bold text-slate-900 text-base mb-1.5">{h}</h3>
+              <p className="font-body text-slate-600 text-sm leading-relaxed whitespace-pre-line">{body}</p>
+            </div>
+          ))}
+        </div>
+        <div className="px-6 py-4 border-t border-slate-100 shrink-0"><button onClick={onClose} className="btn-primary w-full py-3">{lp.close}</button></div>
+      </div>
+    </div>
   )
 }
 
 export default function App() {
   const [lang, setLang] = useState<Lang>('fr')
+  const [legalOpen, setLegalOpen] = useState<LegalKey | null>(null)
   // Révélation au scroll : ajoute `.in` aux éléments `.reveal` à leur entrée.
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -670,10 +940,11 @@ export default function App() {
         <ValueMission lang={lang} />
         <HowSteps lang={lang} />
         <Faq lang={lang} />
-        <DemoForm lang={lang} />
+        <DemoForm lang={lang} onPrivacy={() => setLegalOpen('privacy')} />
         <Contact lang={lang} />
       </main>
-      <Footer lang={lang} />
+      <Footer lang={lang} onLegal={setLegalOpen} />
+      <LegalOverlay lang={lang} page={legalOpen} onClose={() => setLegalOpen(null)} />
     </div>
   )
 }
