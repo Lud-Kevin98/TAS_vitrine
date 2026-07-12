@@ -1,0 +1,19 @@
+# Dépendances
+node_modules/
+
+# Build
+dist/
+dist-ssr/
+*.local
+
+# Env (secrets / config locale)
+.env
+.env.local
+.env.*.local
+
+# Logs / éditeurs / OS
+*.log
+npm-debug.log*
+.DS_Store
+.vscode/
+.idea/
