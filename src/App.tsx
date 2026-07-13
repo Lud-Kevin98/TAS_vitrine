@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {
   Activity, AlertTriangle, ArrowRight, BarChart3, Building2, CheckCircle2, ChevronDown, Clock,
-  DatabaseZap, FileText, Fingerprint, GraduationCap, HeartPulse, Headphones, History, KeyRound,
+  DatabaseZap, Facebook, FileText, Fingerprint, GraduationCap, HeartPulse, Headphones, History, Instagram, KeyRound,
   LayoutGrid, Lock, Mail, MapPin, Menu, MessageCircle, Package, Phone, Puzzle, Search,
   ServerCrash, Settings2, Server, ShieldCheck, ShoppingBag, Sparkles, TrendingDown, TrendingUp,
   Truck, Users, UtensilsCrossed, X, Zap,
@@ -16,9 +16,13 @@ type CardItem = { icon: React.ElementType; title: string; desc: string }
 
 const contact = {
   email: 'contact@tas-platform.com',
-  phone: '+49 176 71200287',
-  whatsapp: '+49 176 29424376',
+  phone: '+237 6 57 08 69 84',
+  whatsapp: '+237 6 57 08 69 84',
   location: 'Allemagne & Cameroun',
+  // Réseaux sociaux : à compléter quand les comptes seront créés (laisser vide
+  // masque l'icône). Ex. 'https://facebook.com/tasplatform'.
+  facebook: '',
+  instagram: '',
 }
 
 const content = {
@@ -881,7 +885,7 @@ function Footer({ lang, onLegal }: { lang: Lang; onLegal: (k: LegalKey) => void 
   const year = new Date().getFullYear()
   const legalKeys: LegalKey[] = ['impressum', 'privacy', 'terms']
   return (
-    <footer className="bg-slate-900 text-slate-400"><div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-8"><div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12"><div className="space-y-5"><Logo className="h-12 brightness-0 invert" /><p className="font-body text-slate-500 text-sm leading-relaxed">{t.footerDesc}</p><div className="flex items-center gap-2"><div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" /><span className="font-body text-emerald-400 text-xs">Actif au Cameroun · Afrique</span></div></div><div><p className="font-display font-semibold text-white text-sm mb-5">Modules</p><ul className="space-y-3">{['TAS Logistics', 'TAS Health', 'TAS Retail', 'TAS School', 'TAS Food', 'TAS Consulting'].map(m => <li key={m}><a href={m === 'TAS Consulting' ? '#consulting' : '#modules'} className="font-body text-slate-500 hover:text-white text-sm transition-colors flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-blue-600/60" />{m}</a></li>)}</ul></div><div><p className="font-display font-semibold text-white text-sm mb-5">Navigation</p><ul className="space-y-3">{t.nav.map((label: string, i: number) => <li key={label}><a href={`#${navIds[i]}`} className="font-body text-slate-500 hover:text-white text-sm transition-colors flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-blue-600/60" />{label}</a></li>)}</ul></div><div><p className="font-display font-semibold text-white text-sm mb-5">Contact</p><ul className="space-y-4"><li><a href={`mailto:${contact.email}`} className="flex items-center gap-3 hover:text-white transition-colors"><Mail size={15} className="text-blue-500" />{contact.email}</a></li><li><a href={`tel:${contact.phone.replace(/\s/g, '')}`} className="flex items-center gap-3 hover:text-white transition-colors"><Phone size={15} className="text-blue-500" />{contact.phone}</a></li><li><div className="flex items-center gap-3"><MapPin size={15} className="text-blue-500" />{contact.location}</div></li></ul></div></div><div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"><p className="font-body text-slate-600 text-sm">© {year} TAS Platform. {t.rights}</p><div className="flex items-center gap-4">{t.legal.map((l: string, i: number) => <button key={l} type="button" onClick={() => onLegal(legalKeys[i])} className="text-xs text-slate-500 hover:text-white transition-colors">{l}</button>)}<span className="text-xs font-body text-slate-600">{t.made}</span></div></div></div></footer>
+    <footer className="bg-slate-900 text-slate-400"><div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-8"><div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12"><div className="space-y-5"><Logo className="h-12 brightness-0 invert" /><p className="font-body text-slate-500 text-sm leading-relaxed">{t.footerDesc}</p><div className="flex items-center gap-2"><div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" /><span className="font-body text-emerald-400 text-xs">Actif au Cameroun · Afrique</span></div><div className="flex items-center gap-2.5 pt-1">{[[Facebook, contact.facebook], [Instagram, contact.instagram]].map(([Icon, url]: any, i: number) => (url ? <a key={i} href={url} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-xl bg-slate-800 hover:bg-blue-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><Icon size={16} /></a> : <span key={i} title={t.soon} className="w-9 h-9 rounded-xl bg-slate-800/60 text-slate-600 flex items-center justify-center cursor-default"><Icon size={16} /></span>))}</div></div><div><p className="font-display font-semibold text-white text-sm mb-5">Modules</p><ul className="space-y-3">{['TAS Logistics', 'TAS Health', 'TAS Retail', 'TAS School', 'TAS Food', 'TAS Consulting'].map(m => <li key={m}><a href={m === 'TAS Consulting' ? '#consulting' : '#modules'} className="font-body text-slate-500 hover:text-white text-sm transition-colors flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-blue-600/60" />{m}</a></li>)}</ul></div><div><p className="font-display font-semibold text-white text-sm mb-5">Navigation</p><ul className="space-y-3">{t.nav.map((label: string, i: number) => <li key={label}><a href={`#${navIds[i]}`} className="font-body text-slate-500 hover:text-white text-sm transition-colors flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-blue-600/60" />{label}</a></li>)}</ul></div><div><p className="font-display font-semibold text-white text-sm mb-5">Contact</p><ul className="space-y-4"><li><a href={`mailto:${contact.email}`} className="flex items-center gap-3 hover:text-white transition-colors"><Mail size={15} className="text-blue-500" />{contact.email}</a></li><li><a href={`tel:${contact.phone.replace(/\s/g, '')}`} className="flex items-center gap-3 hover:text-white transition-colors"><Phone size={15} className="text-blue-500" />{contact.phone}</a></li><li><a href={`https://wa.me/${contact.whatsapp.replace(/\s|[+]/g, '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-white transition-colors"><MessageCircle size={15} className="text-emerald-500" />WhatsApp</a></li><li><div className="flex items-center gap-3"><MapPin size={15} className="text-blue-500" />{contact.location}</div></li></ul></div></div><div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"><p className="font-body text-slate-600 text-sm">© {year} TAS Platform. {t.rights}</p><div className="flex items-center gap-4">{t.legal.map((l: string, i: number) => <button key={l} type="button" onClick={() => onLegal(legalKeys[i])} className="text-xs text-slate-500 hover:text-white transition-colors">{l}</button>)}<span className="text-xs font-body text-slate-600">{t.made}</span></div></div></div></footer>
   )
 }
 
@@ -952,6 +956,14 @@ export default function App() {
       </main>
       <Footer lang={lang} onLegal={setLegalOpen} />
       <LegalOverlay lang={lang} page={legalOpen} onClose={() => setLegalOpen(null)} />
+      {/* Bouton WhatsApp flottant (contact direct, fort taux de conversion). */}
+      <a
+        href={`https://wa.me/${contact.whatsapp.replace(/\s|[+]/g, '')}`}
+        target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+        className="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shadow-strong hover:scale-105 transition-all animate-float"
+      >
+        <MessageCircle size={26} />
+      </a>
     </div>
   )
 }
