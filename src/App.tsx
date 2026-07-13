@@ -26,10 +26,11 @@ const content = {
     nav: ['Modules', 'Sécurité', 'Tarifs', 'FAQ', 'Contact'],
     cta: 'Demander une démo',
     heroLabel: 'Plateforme SaaS modulaire',
-    heroTitle: 'Pilotez toute votre entreprise depuis une seule plateforme.',
-    heroDesc: 'TAS digitalise vos opérations, vos données et vos décisions — logistique, commerce, école, restauration, santé — avec des modules activables à la carte, pensés pour l’Afrique.',
-    heroPrimary: 'Demander une démo',
+    heroTitle: 'Fini le papier et Excel : pilotez tout en temps réel.',
+    heroDesc: 'Logistique, commerce, école, restauration, santé : activez les modules dont vous avez besoin. Données isolées et sécurisées, app mobile pour le terrain, support local — conçu pour l’Afrique.',
+    heroPrimary: 'Réserver ma démo gratuite',
     heroSecondary: 'Voir les tarifs',
+    heroReassure: ['Sans engagement', 'Mise en route rapide', 'Données isolées & sécurisées', 'Support local'],
     trackLabel: 'Suivez un colis en direct',
     trackPlaceholder: 'Entrez votre code de suivi…',
     trackBtn: 'Suivre',
@@ -212,9 +213,10 @@ content.en = {
   nav: ['Modules', 'Security', 'Pricing', 'FAQ', 'Contact'],
   cta: 'Request a demo',
   heroLabel: 'Modular SaaS platform',
-  heroTitle: 'Run your entire business from a single platform.',
-  heroDesc: 'TAS digitizes your operations, data and decisions — logistics, retail, school, food, health — with modules you activate on demand, built for Africa.',
-  heroPrimary: 'Request a demo', heroSecondary: 'See pricing',
+  heroTitle: 'No more paper and Excel: run everything in real time.',
+  heroDesc: 'Logistics, retail, school, food, health: turn on the modules you need. Isolated, secure data, a mobile app for the field, local support — built for Africa.',
+  heroPrimary: 'Book my free demo', heroSecondary: 'See pricing',
+  heroReassure: ['No commitment', 'Fast onboarding', 'Isolated & secure data', 'Local support'],
   trackLabel: 'Track a parcel live', trackPlaceholder: 'Enter your tracking code…', trackBtn: 'Track',
   heroStats: [['5', 'Sectors'], ['Live', 'TAS Logistics'], ['24h', 'Guaranteed reply']],
   trustedBy: 'Already digitizing with TAS',
@@ -372,9 +374,10 @@ content.de = {
   nav: ['Module', 'Sicherheit', 'Preise', 'FAQ', 'Kontakt'],
   cta: 'Demo anfragen',
   heroLabel: 'Modulare SaaS-Plattform',
-  heroTitle: 'Steuern Sie Ihr gesamtes Unternehmen über eine einzige Plattform.',
-  heroDesc: 'TAS digitalisiert Ihre Abläufe, Daten und Entscheidungen — Logistik, Handel, Schule, Gastronomie, Gesundheit — mit Modulen, die Sie nach Bedarf aktivieren, entwickelt für Afrika.',
-  heroPrimary: 'Demo anfragen', heroSecondary: 'Preise ansehen',
+  heroTitle: 'Schluss mit Papier und Excel: alles in Echtzeit steuern.',
+  heroDesc: 'Logistik, Handel, Schule, Gastronomie, Gesundheit: Aktivieren Sie die Module, die Sie brauchen. Isolierte, sichere Daten, eine mobile App fürs Feld, lokaler Support — entwickelt für Afrika.',
+  heroPrimary: 'Kostenlose Demo buchen', heroSecondary: 'Preise ansehen',
+  heroReassure: ['Ohne Verpflichtung', 'Schnelle Einrichtung', 'Isolierte & sichere Daten', 'Lokaler Support'],
   trackLabel: 'Sendung live verfolgen', trackPlaceholder: 'Geben Sie Ihren Sendungscode ein…', trackBtn: 'Verfolgen',
   heroStats: [['5', 'Branchen'], ['Live', 'TAS Logistics'], ['24 Std.', 'Garantierte Antwort']],
   trustedBy: 'Sie digitalisieren bereits mit TAS',
@@ -593,6 +596,11 @@ function Hero({ lang }: { lang: Lang }) {
             <div className="flex flex-col sm:flex-row gap-3 pt-1">
               <a href="#demo" className="btn-primary py-4 px-7 text-[15px]">{t.heroPrimary}<ArrowRight size={18} /></a>
               <a href="#pricing" className="btn-outline py-4 px-7 text-[15px]">{t.heroSecondary}</a>
+            </div>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 pt-0.5">
+              {t.heroReassure.map((r: string) => (
+                <span key={r} className="inline-flex items-center gap-1.5 text-[13px] text-slate-600 font-medium"><CheckCircle2 size={15} className="text-emerald-500 shrink-0" />{r}</span>
+              ))}
             </div>
             <div className="grid grid-cols-3 gap-4 pt-2">
               {t.heroStats.map(([n, l]: string[]) => (
