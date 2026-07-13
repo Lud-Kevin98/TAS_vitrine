@@ -170,6 +170,7 @@ const content = {
     rights: 'Tous droits réservés.', made: 'Fait avec ❤️ en Afrique', ready: 'Prêt à démarrer ?', response: 'Réponse garantie sous 24h',
     legal: ['Mentions légales', 'Confidentialité', 'CGU'],
     delivered: 'Livré', inTransit: 'En transit', popular: 'Populaire',
+    track: { to: 'En transit vers', at: 'actuellement à', search: 'Rechercher', pieces: '3 pièces · même parcours', steps: ['Créé', 'Reçu', 'En transit', 'Arrivé', 'Livraison', 'Livré'] },
     logisticsCards: ['Colis & plis', 'Tracking public', 'Multi-agences', 'Chauffeurs & GPS', 'Clients B2B', 'Bordereaux PDF', 'Comptabilité', 'Journal d’audit'],
     miniStats: [['5', 'Modules'], ['100%', 'Afrique'], ['3', 'Langues'], ['24/7', 'Support']],
     consentPre: 'J’accepte que mes données soient utilisées pour traiter ma demande (voir la ',
@@ -332,6 +333,7 @@ content.en = {
   rights: 'All rights reserved.', made: 'Made with ❤️ in Africa', ready: 'Ready to start?', response: 'Guaranteed reply within 24h',
   legal: ['Legal notice', 'Privacy', 'Terms'],
   delivered: 'Delivered', inTransit: 'In transit', popular: 'Popular',
+  track: { to: 'In transit to', at: 'currently at', search: 'Track', pieces: '3 items · same route', steps: ['Created', 'Received', 'In transit', 'Arrived', 'Delivery', 'Delivered'] },
   logisticsCards: ['Parcels & letters', 'Public tracking', 'Multi-branch', 'Drivers & GPS', 'B2B clients', 'PDF waybills', 'Accounting', 'Audit trail'],
   miniStats: [['5', 'Modules'], ['100%', 'Africa'], ['3', 'Languages'], ['24/7', 'Support']],
   consentPre: 'I agree that my data may be used to process my request (see the ',
@@ -491,6 +493,7 @@ content.de = {
   rights: 'Alle Rechte vorbehalten.', made: 'Mit ❤️ in Afrika erstellt', ready: 'Bereit zu starten?', response: 'Garantierte Antwort innerhalb von 24 Std.',
   legal: ['Impressum', 'Datenschutz', 'AGB'],
   delivered: 'Zugestellt', inTransit: 'Unterwegs', popular: 'Beliebt',
+  track: { to: 'Unterwegs nach', at: 'aktuell in', search: 'Verfolgen', pieces: '3 Stücke · gleiche Route', steps: ['Erstellt', 'Erhalten', 'Unterwegs', 'Angekommen', 'Zustellung', 'Zugestellt'] },
   logisticsCards: ['Pakete & Briefe', 'Öffentliches Tracking', 'Mehrere Filialen', 'Fahrer & GPS', 'B2B-Kunden', 'PDF-Frachtbriefe', 'Buchhaltung', 'Audit-Protokoll'],
   miniStats: [['5', 'Module'], ['100%', 'Afrika'], ['3', 'Sprachen'], ['24/7', 'Support']],
   consentPre: 'Ich stimme zu, dass meine Daten zur Bearbeitung meiner Anfrage verwendet werden (siehe ',
@@ -597,46 +600,74 @@ function Hero({ lang }: { lang: Lang }) {
               ))}
             </div>
           </div>
-          <DashMockup t={t} />
+          <TrackPreview t={t} />
         </div>
       </div>
     </section>
   )
 }
 
-function DashMockup({ t }: { t: any }) {
+// Aperçu produit ANIMÉ : le suivi public (fidèle à la vraie page). Le parcours
+// se remplit à l'ouverture (stepper animé) → « scotchant » et concret.
+function TrackPreview({ t }: { t: any }) {
+  const [step, setStep] = useState(0)
+  const steps: string[] = t.track?.steps ?? ['Créé', 'Reçu', 'En transit', 'Arrivé', 'Livraison', 'Livré']
+  const target = 2 // index de l'étape active (« En transit »)
+  useEffect(() => {
+    const a = setTimeout(() => setStep(1), 500)
+    const b = setTimeout(() => setStep(2), 1050)
+    return () => { clearTimeout(a); clearTimeout(b) }
+  }, [])
   return (
     <div className="relative w-full max-w-[540px] mx-auto lg:mx-0 animate-fade-up delay-300">
       <div className="bg-white rounded-3xl shadow-strong border border-slate-200 overflow-hidden">
-        <div className="bg-blue-600 px-5 py-3.5 flex items-center justify-between">
-          <div className="flex items-center gap-2.5"><div className="w-6 h-6 bg-white/20 rounded-lg flex items-center justify-center"><Zap size={12} className="text-white" /></div><span className="font-display font-semibold text-white text-[13px]">{t.dashboardTitle}</span></div>
+        <div className="bg-blue-600 px-5 py-3 flex items-center justify-between">
+          <span className="font-display font-semibold text-white text-[13px] flex items-center gap-2"><Search size={13} /> TAS · Tracking</span>
           <div className="flex gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-red-400" /><div className="w-2.5 h-2.5 rounded-full bg-yellow-400" /><div className="w-2.5 h-2.5 rounded-full bg-emerald-400" /></div>
         </div>
-        <div className="p-4 space-y-4 bg-slate-50">
-          <div className="grid grid-cols-3 gap-3">
-            {[Package, TrendingUp, Users].map((Icon, i) => (
-              <div key={i} className="bg-white rounded-xl p-3 border border-slate-100 shadow-soft"><div className="w-7 h-7 rounded-lg mb-2 bg-blue-100 flex items-center justify-center"><Icon size={13} className="text-blue-600" /></div><p className="font-display font-bold text-slate-900 text-[15px] leading-tight">{t.kpis[i][1]}</p><p className="text-[10px] text-slate-500 mt-0.5">{t.kpis[i][0]}</p><p className="text-[10px] text-emerald-600 font-semibold mt-1">{t.kpis[i][2]}</p></div>
-            ))}
+        <div className="p-4 space-y-3 bg-slate-50">
+          <div className="flex gap-2">
+            <div className="flex-1 bg-white rounded-xl border border-slate-200 px-3 py-2.5 font-mono text-[12px] text-slate-700 shadow-soft">DLA-20260713-0001</div>
+            <div className="bg-blue-600 text-white rounded-xl px-4 py-2.5 text-xs font-display font-semibold flex items-center gap-1.5 shadow-soft"><Search size={13} /> {t.track?.search ?? 'Rechercher'}</div>
           </div>
           <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-soft">
-            <div className="flex items-center justify-between mb-3"><div className="flex items-center gap-2"><BarChart3 size={14} className="text-blue-600" /><span className="font-display font-semibold text-slate-800 text-xs">{t.activity}</span></div><span className="text-[10px] text-slate-400 font-mono">Jan → Déc</span></div>
-            <div className="flex items-end gap-1 h-[52px]">{[35,55,40,72,60,88,50,95,75,65,80,100].map((h, i) => <div key={i} className={`flex-1 rounded-t ${i === 11 ? 'bg-blue-500' : i >= 9 ? 'bg-blue-300' : 'bg-blue-100'}`} style={{ height: `${h}%` }} />)}</div>
+            <div className="flex items-center justify-between mb-3">
+              <div><p className="text-[9px] uppercase tracking-wider text-slate-400 font-mono">Suivi</p><p className="font-mono font-bold text-slate-900 text-sm">DLA-20260713-0001</p></div>
+              <span className="text-[11px] font-display font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700 animate-pulse-ring">{t.inTransit}</span>
+            </div>
+            <div className="text-[13px] text-blue-800 bg-blue-50 border border-blue-100 rounded-lg px-3 py-2">
+              {t.track?.to ?? 'En transit vers'} <b>Yaoundé</b> — {t.track?.at ?? 'actuellement à'} Douala
+            </div>
+            <div className="mt-2 text-[11px] text-blue-700 bg-blue-50/60 border border-blue-100 rounded-lg px-3 py-1.5 flex items-center gap-1.5"><Package size={12} /> {t.track?.pieces ?? '3 pièces · même parcours'}</div>
           </div>
-          <div className="bg-white rounded-xl border border-slate-100 shadow-soft overflow-hidden">
-            <div className="px-4 py-2.5 border-b border-slate-50"><span className="font-display font-semibold text-slate-800 text-xs">{t.latest}</span></div>
-            {['TAS-20241201-XKPQ', 'TAS-20241201-RMJT', 'TAS-20241201-HNAZ'].map((code, i) => (
-              <div key={code} className="flex items-center justify-between px-4 py-2.5 border-b border-slate-50 last:border-0">
-                <div className="flex items-center gap-2.5"><div className="w-6 h-6 bg-blue-50 rounded-lg flex items-center justify-center shrink-0"><Truck size={11} className="text-blue-600" /></div><div><p className="font-mono text-[10px] font-medium text-slate-700">{code}</p><p className="text-[9px] text-slate-400">Douala → Yaoundé</p></div></div>
-                <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${i === 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'}`}>{i === 0 ? t.delivered : t.inTransit}</span>
+          <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-soft">
+            <div className="relative">
+              <div className="absolute left-3 right-3 top-3 h-[3px] bg-slate-100 rounded-full" />
+              <div className="absolute left-3 top-3 h-[3px] bg-emerald-500 rounded-full transition-all duration-700 ease-out"
+                style={{ width: `calc((100% - 24px) * ${Math.min(step, target) / (steps.length - 1)})` }} />
+              <div className="relative flex justify-between">
+                {steps.map((label, i) => {
+                  const done = i < target && i < step
+                  const active = i === target && step >= target
+                  return (
+                    <div key={label} className="flex flex-col items-center gap-1.5" style={{ width: `${100 / steps.length}%` }}>
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all duration-500 ${done ? 'bg-emerald-500 text-white' : active ? 'bg-blue-600 text-white ring-4 ring-blue-100' : 'bg-slate-100 text-slate-400'}`}>
+                        {done ? <CheckCircle2 size={13} /> : i + 1}
+                      </div>
+                      <span className={`text-[8.5px] text-center leading-tight ${active ? 'text-blue-700 font-semibold' : 'text-slate-400'}`}>{label}</span>
+                    </div>
+                  )
+                })}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
-      <div className="absolute -right-5 top-20 bg-white rounded-2xl shadow-medium border border-slate-100 px-4 py-3 hidden xl:flex items-center gap-3 animate-float"><CheckCircle2 size={18} className="text-emerald-600" /><div><p className="font-display font-bold text-slate-900 text-sm">{t.available}</p><p className="text-[10px] text-slate-500">TAS Logistics · Live</p></div></div>
+      <div className="absolute -right-5 top-24 bg-white rounded-2xl shadow-medium border border-slate-100 px-4 py-3 hidden xl:flex items-center gap-3 animate-float"><CheckCircle2 size={18} className="text-emerald-600" /><div><p className="font-display font-bold text-slate-900 text-sm">Live</p><p className="text-[10px] text-slate-500">Douala → Yaoundé</p></div></div>
     </div>
   )
 }
+
 
 function InfoCard({ icon: Icon, title, desc }: CardItem) {
   return (
