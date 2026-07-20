@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 const SITE = 'https://tas-platform.com'
-const SUFFIX = 'TAS Platform — ERP Cloud configurable'
+const SUFFIX = 'TAS — Plateforme modulaire configurable'
 
 function setMeta(attr: 'name' | 'property', key: string, value: string) {
   let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`)

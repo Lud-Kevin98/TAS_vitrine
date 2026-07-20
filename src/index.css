@@ -70,3 +70,6 @@
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* Barres du hero : croissance à l'apparition */
+@keyframes growBar { from { transform: scaleY(0); opacity: 0; } to { transform: scaleY(1); opacity: 1; } }

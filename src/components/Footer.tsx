@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Mail, Phone, MapPin, ShieldCheck } from 'lucide-react'
+import { Mail, Phone, MapPin } from 'lucide-react'
 import { CONTACT, useT } from '../i18n'
 
 const LOGO = '/logo.png'
@@ -39,7 +39,6 @@ export default function Footer() {
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-7 text-xs text-slate-500 sm:flex-row sm:items-center">
           <p>© 2026 Tchomnou Applications Systems — TAS Platform. {t.footer.rights}</p>
           <div className="flex items-center gap-5">
-            <span className="inline-flex items-center gap-1.5 text-slate-400"><ShieldCheck className="h-3.5 w-3.5 text-cyan-400" />{t.footer.hosted}</span>
             <Link to="/a-propos" className="hover:text-white">{t.footer.legal1}</Link>
             <Link to="/a-propos" className="hover:text-white">{t.footer.legal2}</Link>
           </div>

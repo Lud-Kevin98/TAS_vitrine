@@ -11,7 +11,7 @@ export default function About() {
   const t = useT()
   useSeo({
     title: 'À propos — Tchomnou Applications Systems',
-    description: 'Tchomnou Applications Systems (TAS) édite une plateforme ERP Cloud moderne. Ancrage africain, hébergement souverain en Allemagne, présence au Cameroun et en Allemagne.',
+    description: 'Tchomnou Applications Systems (TAS) édite une plateforme moderne. Ancrage africain, hébergement souverain en Allemagne, présence au Cameroun et en Allemagne.',
     path: '/a-propos',
   })
   const a = t.about

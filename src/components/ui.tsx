@@ -1,6 +1,17 @@
 import { Link } from 'react-router-dom'
 import type { ReactNode } from 'react'
 import { ArrowRight } from 'lucide-react'
+import { useInView } from '../useInView'
+
+/** Révélation au défilement (fade + montée). */
+export function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+  const { ref, inView } = useInView()
+  return (
+    <div ref={ref} className={`reveal ${inView ? 'in' : ''} ${className}`} style={delay ? { transitionDelay: `${delay}ms` } : undefined}>
+      {children}
+    </div>
+  )
+}
 
 export function Container({ children, className = '' }: { children: ReactNode; className?: string }) {
   return <div className={`mx-auto w-full max-w-6xl px-5 sm:px-8 ${className}`}>{children}</div>

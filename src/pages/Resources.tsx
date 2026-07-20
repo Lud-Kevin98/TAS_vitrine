@@ -10,7 +10,7 @@ export default function Resources() {
   const t = useT()
   useSeo({
     title: 'Ressources — TAS Platform',
-    description: 'Documentation, FAQ, blog, centre d’aide et actualités de TAS Platform. Tout pour comprendre et exploiter votre ERP Cloud configurable.',
+    description: 'Documentation, FAQ, blog, centre d’aide et actualités de TAS Platform. Tout pour comprendre et exploiter votre plateforme configurable.',
     path: '/ressources',
   })
   const r = t.resources

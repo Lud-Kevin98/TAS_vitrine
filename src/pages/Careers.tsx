@@ -10,7 +10,7 @@ export default function Careers() {
   const t = useT()
   useSeo({
     title: 'Carrières — TAS Platform',
-    description: 'Rejoignez Tchomnou Applications Systems et construisez la plateforme ERP Cloud de référence. Candidatures spontanées bienvenues.',
+    description: 'Rejoignez Tchomnou Applications Systems et construisez la plateforme de référence. Candidatures spontanées bienvenues.',
     path: '/carrieres',
   })
   const c = t.careers
