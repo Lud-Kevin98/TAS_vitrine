@@ -51,6 +51,7 @@ export type Content = {
   pricing: Price[]
   home: {
     eyebrow: string; title1: string; title2: string; sub: string; feats: string[]
+    trust: string; statement: string
     probEyebrow: string; probTitle: string; probSub: string; problems: Why[]
     solEyebrow: string; solTitle: string; solSub: string
     whyEyebrow: string; whyTitle: string; whySub: string
@@ -125,6 +126,8 @@ const TR: Record<Lang, Content> = {
       title1: 'Fini le papier et Excel :', title2: 'pilotez tout en temps réel.',
       sub: 'TAS réunit tous vos métiers dans une seule plateforme configurable — logistique, finance, RH, commerce, santé. Activez les modules dont vous avez besoin et gardez une vue à 360°.',
       feats: ['Modules activables', 'Sans double saisie', 'Suivi en temps réel', 'App mobile terrain'],
+      trust: 'Conçu selon les standards de sécurité et de qualité des grands éditeurs.',
+      statement: 'Une plateforme. Tous vos métiers. Aucun compromis.',
       probEyebrow: 'Le constat', probTitle: 'Vos outils actuels vous freinent.', probSub: 'Papier, Excel, WhatsApp : des données dispersées, peu fiables et impossibles à consolider — et des décisions prises à l’aveugle.',
       problems: [
         { title: 'Tout est manuel', desc: 'Registres papier, Excel non synchronisé, saisies en double. Chaque erreur coûte du temps et de l’argent.' },
@@ -201,6 +204,8 @@ const TR: Record<Lang, Content> = {
       title1: 'No more paper and spreadsheets:', title2: 'run everything in real time.',
       sub: 'TAS brings all your operations into one configurable platform — logistics, finance, HR, retail, health. Switch on the modules you need and keep a 360° view.',
       feats: ['Modules on demand', 'No double entry', 'Real-time tracking', 'Mobile field app'],
+      trust: 'Built to the security and quality standards of the world’s leading vendors.',
+      statement: 'One platform. Every part of your business. No compromise.',
       probEyebrow: 'The reality', probTitle: 'Your current tools are holding you back.', probSub: 'Paper, spreadsheets, WhatsApp: scattered, unreliable data you can’t consolidate — and decisions made blind.',
       problems: [
         { title: 'Everything is manual', desc: 'Paper logs, unsynced spreadsheets, double entry. Every mistake costs time and money.' },
@@ -277,6 +282,8 @@ const TR: Record<Lang, Content> = {
       title1: 'Schluss mit Papier und Excel:', title2: 'alles in Echtzeit steuern.',
       sub: 'TAS vereint all Ihre Bereiche in einer konfigurierbaren Plattform — Logistik, Finanzen, HR, Handel, Gesundheit. Aktivieren Sie die Module, die Sie brauchen, und behalten Sie die 360°-Sicht.',
       feats: ['Module nach Bedarf', 'Keine Doppelerfassung', 'Echtzeit-Tracking', 'Mobile Feld-App'],
+      trust: 'Nach den Sicherheits- und Qualitätsstandards der führenden Anbieter gebaut.',
+      statement: 'Eine Plattform. Alle Bereiche. Kein Kompromiss.',
       probEyebrow: 'Die Realität', probTitle: 'Ihre heutigen Werkzeuge bremsen Sie aus.', probSub: 'Papier, Excel, WhatsApp: verstreute, unzuverlässige Daten, die sich nicht zusammenführen lassen — und Entscheidungen im Blindflug.',
       problems: [
         { title: 'Alles ist manuell', desc: 'Papierlisten, nicht synchrone Tabellen, Doppelerfassung. Jeder Fehler kostet Zeit und Geld.' },

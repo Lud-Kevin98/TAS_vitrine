@@ -3,7 +3,7 @@ import {
   ArrowRight, Check, TrendingUp, Package, Wallet, Users, MapPin,
   FileWarning, Clock, DatabaseZap, TrendingDown, Building2, CircleSlash,
 } from 'lucide-react'
-import { Container, Eyebrow, Button, SectionHead, Reveal } from '../components/ui'
+import { Container, Button, SectionHead, Reveal } from '../components/ui'
 import CtaBand from '../components/CtaBand'
 import { useT, whyList, modulesList, FEATURED } from '../i18n'
 import { useSeo } from '../lib/seo'
@@ -24,24 +24,26 @@ export default function Home() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-mist" />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[560px] bg-grid bg-grid opacity-60" />
-        <div className="blob -top-24 right-0 h-[460px] w-[460px] bg-cyan-300/25 animate-float" />
-        <div className="blob top-40 -left-24 h-[380px] w-[380px] bg-blue-400/15" />
-        <Container className="relative grid items-center gap-16 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:py-28">
+      <section className="relative overflow-hidden mesh-light">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[620px] bg-grid bg-grid opacity-50" />
+        <div className="blob -top-24 right-0 h-[480px] w-[480px] bg-cyan-300/25 animate-float" />
+        <div className="blob top-48 -left-24 h-[400px] w-[400px] bg-blue-400/12" />
+        <Container className="relative grid items-center gap-16 py-20 lg:grid-cols-[1.08fr_0.92fr] lg:py-32">
           <div className="animate-fade-up">
-            <Eyebrow>{t.home.eyebrow}</Eyebrow>
-            <h1 className="mt-6 font-display text-[2.6rem] font-bold leading-[1.05] tracking-tight text-navy-900 sm:text-5xl lg:text-[3.6rem] text-balance">
+            <span className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/70 px-3.5 py-1.5 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-blue-700 shadow-soft backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-blue-600 to-cyan-400" />{t.home.eyebrow}
+            </span>
+            <h1 className="mt-7 font-display text-[2.7rem] font-bold leading-[1.02] tracking-[-0.02em] text-navy-900 sm:text-[3.4rem] lg:text-[4.1rem] text-balance">
               {t.home.title1}<br />
-              <span className="bg-brand bg-clip-text text-transparent">{t.home.title2}</span>
+              <span className="gradient-text">{t.home.title2}</span>
             </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-slate-600">{t.home.sub}</p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-slate-600 sm:text-xl">{t.home.sub}</p>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Button to="/contact" icon>{t.cta}</Button>
               <Button to="/produits" variant="ghost">{t.discover}</Button>
             </div>
-            <ul className="mt-9 flex flex-wrap gap-x-7 gap-y-2.5 text-sm text-slate-500">
+            <p className="mt-6 text-sm text-slate-500">{t.home.trust}</p>
+            <ul className="mt-6 flex flex-wrap gap-x-7 gap-y-2.5 text-sm text-slate-500">
               {t.home.feats.map((f) => (
                 <li key={f} className="inline-flex items-center gap-1.5"><Check className="h-4 w-4 text-cyan-500" />{f}</li>
               ))}
@@ -51,15 +53,23 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* ── BANDE DE CONFIANCE ───────────────────────── */}
-      <section className="border-y border-slate-200 bg-white">
-        <Container className="grid grid-cols-2 gap-8 py-12 sm:grid-cols-4">
-          {t.stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 80} className="text-center">
-              <div className="font-display text-[2rem] font-bold leading-none text-navy-900">{s.value}</div>
-              <div className="mt-2 text-sm text-slate-500">{s.label}</div>
-            </Reveal>
-          ))}
+      {/* ── AFFIRMATION + CHIFFRES ───────────────────── */}
+      <section className="border-y border-slate-200 bg-white py-16 sm:py-20">
+        <Container>
+          <Reveal>
+            <h2 className="mx-auto max-w-4xl text-center font-display text-2xl font-bold leading-tight tracking-tight text-navy-900 sm:text-4xl text-balance">
+              {t.home.statement}
+            </h2>
+          </Reveal>
+          <div className="mx-auto mt-12 h-px max-w-3xl hairline" />
+          <div className="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4">
+            {t.stats.map((s, i) => (
+              <Reveal key={s.label} delay={i * 80} className="text-center">
+                <div className="gradient-text font-display text-[2.4rem] font-bold leading-none sm:text-5xl">{s.value}</div>
+                <div className="mt-2.5 text-sm text-slate-500">{s.label}</div>
+              </Reveal>
+            ))}
+          </div>
         </Container>
       </section>
 

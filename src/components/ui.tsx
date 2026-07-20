@@ -63,10 +63,10 @@ export function Button({ to, href, children, variant = 'primary', icon = false, 
 
 export function PageHero({ eyebrow, title, sub }: { eyebrow: string; title: ReactNode; sub: ReactNode }) {
   return (
-    <section className="relative overflow-hidden border-b border-slate-200 bg-mist">
-      <div className="pointer-events-none absolute inset-0 bg-grid bg-grid opacity-50" />
+    <section className="relative overflow-hidden border-b border-slate-200 mesh-light">
+      <div className="pointer-events-none absolute inset-0 bg-grid bg-grid opacity-40" />
       <div className="pointer-events-none absolute -top-24 right-10 h-72 w-72 rounded-full bg-cyan-300/20 blur-3xl" />
-      <Container className="relative py-16 sm:py-20">
+      <Container className="relative py-20 sm:py-24">
         <div className="max-w-3xl animate-fade-up">
           <Eyebrow>{eyebrow}</Eyebrow>
           <h1 className="mt-4 font-display text-4xl font-bold leading-[1.1] tracking-tight text-navy-900 sm:text-5xl text-balance">{title}</h1>
