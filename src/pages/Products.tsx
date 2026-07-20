@@ -1,31 +1,29 @@
 import { Container, PageHero, SectionHead, StatusChip } from '../components/ui'
 import CtaBand from '../components/CtaBand'
-import { ENGINES, MODULES } from '../data/site'
+import { useT, enginesList, modulesList } from '../i18n'
 import { useSeo } from '../lib/seo'
 
 export default function Products() {
+  const t = useT()
   useSeo({
     title: 'Produits — TAS Platform, moteurs & modules',
     description: 'TAS Platform : un socle ERP (Business Process Engine, Rules Engine, Automation, Multi-tenant, API, IA) et des modules métier activables — Logistics, People, Retail, Health, Finance, CRM et plus.',
     path: '/produits',
   })
+  const engines = enginesList(t)
+  const mods = modulesList(t)
 
   return (
     <>
-      <PageHero
-        eyebrow="Produits"
-        title="Une plateforme, pas seulement un logiciel."
-        sub="TAS Platform est le socle : un moteur de processus, des règles, de l’automatisation et une isolation multi-tenant. Vous y activez les modules métier dont vous avez besoin."
-      />
+      <PageHero eyebrow={t.products.eyebrow} title={t.products.title} sub={t.products.sub} />
 
-      {/* Socle technologique */}
       <section className="py-20 sm:py-24">
         <Container>
-          <SectionHead eyebrow="Le socle" title="TAS Platform — le moteur configurable" sub="Le même noyau technique alimente tous les modules : c’est ce qui rend la plateforme cohérente, isolée et adaptable." />
+          <SectionHead eyebrow={t.products.socE} title={t.products.socT} sub={t.products.socS} />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {ENGINES.map((e) => (
+            {engines.map((e) => (
               <div key={e.name} className="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-card transition-all hover:-translate-y-1 hover:shadow-medium">
-                {e.soon && <span className="absolute right-4 top-4 rounded-full bg-slate-100 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase text-slate-500">Bientôt</span>}
+                {e.soon && <span className="absolute right-4 top-4 rounded-full bg-slate-100 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase text-slate-500">{t.statuses.soon}</span>}
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600"><e.icon className="h-5 w-5" /></div>
                 <p className="mt-4 font-mono text-[11px] font-semibold uppercase tracking-wide text-cyan-600">{e.tag}</p>
                 <h3 className="mt-1 font-display text-lg font-semibold text-navy-900">{e.name}</h3>
@@ -36,16 +34,15 @@ export default function Products() {
         </Container>
       </section>
 
-      {/* Modules métier */}
       <section className="scroll-mt-20 bg-slate-50 py-20 sm:py-24" id="modules">
         <Container>
-          <SectionHead eyebrow="Les modules" title="Dix modules métier, une seule base" sub="Chaque module est autonome mais partage les données, les rôles et les processus de la plateforme. Activez-les à la carte." />
+          <SectionHead eyebrow={t.products.modE} title={t.products.modT} sub={t.products.modS} />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {MODULES.map((m) => (
+            {mods.map((m) => (
               <div key={m.id} id={m.id} className="group scroll-mt-24 rounded-2xl border border-slate-200 bg-white p-6 shadow-card transition-all hover:-translate-y-1 hover:border-blue-200 hover:shadow-medium">
                 <div className="flex items-center justify-between">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand text-white"><m.icon className="h-5 w-5" /></div>
-                  <StatusChip status={m.status} />
+                  <StatusChip status={m.status} label={t.statuses[m.status]} />
                 </div>
                 <h3 className="mt-4 font-display text-lg font-semibold text-navy-900">{m.name}</h3>
                 <p className="mt-0.5 text-xs font-medium uppercase tracking-wide text-blue-600">{m.tagline}</p>
@@ -56,7 +53,7 @@ export default function Products() {
         </Container>
       </section>
 
-      <CtaBand title="Un module vous intéresse ?" sub="Nous vous le montrons en conditions réelles, configuré sur votre activité." />
+      <CtaBand title={t.products.ctaT} sub={t.products.ctaS} />
     </>
   )
 }

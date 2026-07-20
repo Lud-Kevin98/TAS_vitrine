@@ -66,16 +66,16 @@ export function PageHero({ eyebrow, title, sub }: { eyebrow: string; title: Reac
   )
 }
 
-export function StatusChip({ status }: { status: 'live' | 'beta' | 'soon' }) {
+export function StatusChip({ status, label }: { status: 'live' | 'beta' | 'soon'; label?: string }) {
   const map = {
     live: 'bg-emerald-50 text-emerald-700 ring-emerald-600/20',
     beta: 'bg-amber-50 text-amber-700 ring-amber-600/20',
     soon: 'bg-slate-100 text-slate-500 ring-slate-500/20',
   }[status]
-  const label = { live: 'Disponible', beta: 'Bêta', soon: 'Bientôt' }[status]
+  const txt = label ?? { live: 'Disponible', beta: 'Bêta', soon: 'Bientôt' }[status]
   return (
     <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold ring-1 ring-inset ${map}`}>
-      <span className="h-1.5 w-1.5 rounded-full bg-current" />{label}
+      <span className="h-1.5 w-1.5 rounded-full bg-current" />{txt}
     </span>
   )
 }
