@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import Products from './pages/Products'
 import Solutions from './pages/Solutions'
+import Services from './pages/Services'
 import Pricing from './pages/Pricing'
 import Resources from './pages/Resources'
 import About from './pages/About'
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/produits" element={<Products />} />
           <Route path="/solutions" element={<Solutions />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/tarifs" element={<Pricing />} />
           <Route path="/ressources" element={<Resources />} />
           <Route path="/a-propos" element={<About />} />
