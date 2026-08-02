@@ -57,6 +57,7 @@ export type Content = {
     whyEyebrow: string; whyTitle: string; whySub: string
     modEyebrow: string; modTitle: string
   }
+  approach: { eyebrow: string; title: string; sub: string; steps: { title: string; desc: string }[] }
   products: { eyebrow: string; title: string; sub: string; socE: string; socT: string; socS: string; modE: string; modT: string; modS: string; ctaT: string; ctaS: string }
   solutions: { eyebrow: string; title: string; sub: string; feats: string[]; seeDemo: string; ctaT: string; ctaS: string }
   pricingPage: { eyebrow: string; title: string; sub: string; faqTitle: string; faq: [string, string][]; ctaT: string; ctaS: string }
@@ -142,6 +143,17 @@ const TR: Record<Lang, Content> = {
       whySub: 'Là où les suites traditionnelles sont rigides et coûteuses, TAS est une plateforme moderne, modulaire et configurable — pensée pour s’adapter à chaque organisation.',
       modEyebrow: 'Nos modules', modTitle: 'Ce que chaque module résout pour vous.',
     },
+    approach: {
+      eyebrow: 'Notre métier',
+      title: 'Nous digitalisons et automatisons vos opérations.',
+      sub: 'TAS est avant tout une entreprise de digitalisation et de conseil informatique. Nous analysons vos processus, les optimisons, puis les mettons en œuvre dans notre plateforme modulaire — et nous restons à vos côtés.',
+      steps: [
+        { title: 'Conseil & audit', desc: 'Nous analysons vos opérations sur le terrain et identifions les leviers concrets de digitalisation et d’automatisation.' },
+        { title: 'Optimisation des processus', desc: 'Nous repensons vos flux — commandes, logistique, finance, RH — pour éliminer le papier, les ressaisies et les pertes de temps.' },
+        { title: 'La plateforme TAS', desc: 'Notre solution : une plateforme modulaire et configurable qui met en œuvre vos processus, activable module par module.' },
+        { title: 'Accompagnement & formation', desc: 'Déploiement, formation de vos équipes et support continu. Votre digitalisation réussit dans la durée, pas seulement le jour du lancement.' },
+      ],
+    },
     products: { eyebrow: 'Produits', title: 'Une plateforme, pas seulement un logiciel.', sub: 'TAS Platform est le socle : un moteur de processus, des règles, de l’automatisation et une isolation multi-tenant. Vous y activez les modules métier dont vous avez besoin.', socE: 'Le socle', socT: 'TAS Platform — le moteur configurable', socS: 'Le même noyau technique alimente tous les modules : c’est ce qui rend la plateforme cohérente, isolée et adaptable.', modE: 'Les modules', modT: 'Un module pour chaque métier, une seule base', modS: 'Chaque module est autonome mais partage les données, les rôles et les processus de la plateforme. Activez-les à la carte.', ctaT: 'Un module vous intéresse ?', ctaS: 'Nous vous le montrons en conditions réelles, configuré sur votre activité.' },
     solutions: { eyebrow: 'Solutions', title: 'Une plateforme qui parle le langage de votre secteur.', sub: 'Nous assemblons les bons modules et pré-configurons les processus adaptés à votre métier. Vous démarrez sur une base pertinente, puis vous l’ajustez.', feats: ['Processus pré-configurés', 'Données isolées & sécurisées', 'App mobile terrain'], seeDemo: 'Voir une démo pour ce secteur', ctaT: 'Votre secteur n’est pas listé ?', ctaS: 'La plateforme est configurable : parlons de votre cas d’usage, nous l’adaptons.' },
     pricingPage: { eyebrow: 'Tarifs', title: 'Payez pour ce que vous activez.', sub: 'Des offres SaaS transparentes qui grandissent avec vous, et une formule Enterprise pour les organisations multi-sites.', faqTitle: 'Ce qu’il faut savoir sur nos offres', faq: [['Pourquoi des tarifs sur devis ?', 'Chaque déploiement dépend des modules activés, du nombre d’utilisateurs et du niveau d’accompagnement. Nous construisons une offre juste, sans surprise.'], ['Puis-je commencer avec un seul module ?', 'Oui. Vous démarrez avec le module prioritaire, puis vous en activez d’autres à mesure que vos besoins grandissent — sans migration.'], ['Mes données sont-elles isolées ?', 'Absolument. Chaque client dispose de données strictement séparées (Row-Level Security), hébergées en Allemagne.']], ctaT: 'Construisons votre offre ensemble.', ctaS: 'Dites-nous vos modules et votre volume : nous revenons avec un devis clair sous 24 h.' },
@@ -220,6 +232,17 @@ const TR: Record<Lang, Content> = {
       whySub: 'Where traditional suites are rigid and costly, TAS is a modern, modular and configurable platform — designed to fit every organization.',
       modEyebrow: 'Our modules', modTitle: 'What each module solves for you.',
     },
+    approach: {
+      eyebrow: 'What we do',
+      title: 'We digitalise and automate your operations.',
+      sub: 'TAS is first and foremost a digitalisation and IT-consulting company. We analyse your processes, optimise them, then implement them in our modular platform — and we stay by your side.',
+      steps: [
+        { title: 'Consulting & audit', desc: 'We analyse your operations on the ground and identify concrete levers for digitalisation and automation.' },
+        { title: 'Process optimisation', desc: 'We rethink your flows — orders, logistics, finance, HR — to remove paper, re-keying and wasted time.' },
+        { title: 'The TAS platform', desc: 'Our solution: a modular, configurable platform that implements your processes, activated module by module.' },
+        { title: 'Onboarding & training', desc: 'Deployment, team training and ongoing support. Your digitalisation succeeds over time, not just on launch day.' },
+      ],
+    },
     products: { eyebrow: 'Products', title: 'A platform, not just software.', sub: 'TAS Platform is the foundation: a process engine, rules, automation and multi-tenant isolation. On top, you activate the business modules you need.', socE: 'The core', socT: 'TAS Platform — the configurable engine', socS: 'The same technical core powers every module — that’s what makes the platform coherent, isolated and adaptable.', modE: 'The modules', modT: 'A module for every part of your business, one base', modS: 'Each module is autonomous yet shares the platform’s data, roles and processes. Activate them à la carte.', ctaT: 'Interested in a module?', ctaS: 'We show it to you in real conditions, configured for your business.' },
     solutions: { eyebrow: 'Solutions', title: 'A platform that speaks your industry’s language.', sub: 'We assemble the right modules and pre-configure the processes suited to your business. You start on a relevant base, then tune it.', feats: ['Pre-configured processes', 'Isolated & secure data', 'Mobile field app'], seeDemo: 'See a demo for this industry', ctaT: 'Industry not listed?', ctaS: 'The platform is configurable: tell us your use case and we adapt it.' },
     pricingPage: { eyebrow: 'Pricing', title: 'Pay for what you activate.', sub: 'Transparent SaaS plans that grow with you, and an Enterprise option for multi-site organizations.', faqTitle: 'What to know about our plans', faq: [['Why quote-based pricing?', 'Every deployment depends on active modules, number of users and level of support. We build a fair, no-surprise offer.'], ['Can I start with a single module?', 'Yes. Start with the priority module, then activate more as your needs grow — no migration.'], ['Is my data isolated?', 'Absolutely. Each client has strictly separated data (Row-Level Security), hosted in Germany.']], ctaT: 'Let’s build your plan together.', ctaS: 'Tell us your modules and volume: we come back with a clear quote within 24 h.' },
@@ -297,6 +320,17 @@ const TR: Record<Lang, Content> = {
       whyEyebrow: 'Warum TAS', whyTitle: 'Die meiste Software zwingt Ihnen ihre Prozesse auf. TAS übernimmt Ihre.',
       whySub: 'Wo klassische Suiten starr und teuer sind, ist TAS eine moderne, modulare und konfigurierbare Plattform — für jede Organisation gemacht.',
       modEyebrow: 'Unsere Module', modTitle: 'Was jedes Modul für Sie löst.',
+    },
+    approach: {
+      eyebrow: 'Was wir tun',
+      title: 'Wir digitalisieren und automatisieren Ihre Abläufe.',
+      sub: 'TAS ist in erster Linie ein Unternehmen für Digitalisierung und IT-Beratung. Wir analysieren Ihre Prozesse, optimieren sie und setzen sie in unserer modularen Plattform um — und bleiben an Ihrer Seite.',
+      steps: [
+        { title: 'Beratung & Audit', desc: 'Wir analysieren Ihre Abläufe vor Ort und identifizieren konkrete Hebel für Digitalisierung und Automatisierung.' },
+        { title: 'Prozessoptimierung', desc: 'Wir denken Ihre Abläufe neu — Aufträge, Logistik, Finanzen, HR — um Papier, Doppelerfassung und Zeitverlust zu beseitigen.' },
+        { title: 'Die TAS-Plattform', desc: 'Unsere Lösung: eine modulare, konfigurierbare Plattform, die Ihre Prozesse umsetzt — Modul für Modul aktivierbar.' },
+        { title: 'Begleitung & Schulung', desc: 'Einführung, Schulung Ihrer Teams und laufender Support. Ihre Digitalisierung gelingt dauerhaft, nicht nur am Starttag.' },
+      ],
     },
     products: { eyebrow: 'Produkte', title: 'Eine Plattform, nicht nur Software.', sub: 'TAS Platform ist das Fundament: eine Prozess-Engine, Regeln, Automatisierung und mandantenfähige Isolierung. Darauf aktivieren Sie die Fachmodule, die Sie brauchen.', socE: 'Die Basis', socT: 'TAS Platform — die konfigurierbare Engine', socS: 'Derselbe technische Kern treibt jedes Modul an — das macht die Plattform kohärent, isoliert und anpassbar.', modE: 'Die Module', modT: 'Ein Modul für jeden Bereich, eine Basis', modS: 'Jedes Modul ist autonom, teilt aber Daten, Rollen und Prozesse der Plattform. À la carte aktivierbar.', ctaT: 'Interesse an einem Modul?', ctaS: 'Wir zeigen es Ihnen unter realen Bedingungen, konfiguriert für Ihr Geschäft.' },
     solutions: { eyebrow: 'Lösungen', title: 'Eine Plattform, die die Sprache Ihrer Branche spricht.', sub: 'Wir kombinieren die richtigen Module und konfigurieren die passenden Prozesse vor. Sie starten auf einer relevanten Basis und passen sie an.', feats: ['Vorkonfigurierte Prozesse', 'Isolierte & sichere Daten', 'Mobile Feld-App'], seeDemo: 'Demo für diese Branche ansehen', ctaT: 'Ihre Branche fehlt?', ctaS: 'Die Plattform ist konfigurierbar: Erzählen Sie uns Ihren Anwendungsfall, wir passen sie an.' },

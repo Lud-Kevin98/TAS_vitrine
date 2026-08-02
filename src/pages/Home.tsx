@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import {
   ArrowRight, Check, TrendingUp, Package, Wallet, Users, MapPin,
   FileWarning, Clock, DatabaseZap, TrendingDown, Building2, CircleSlash,
+  Compass, Workflow, Layers, GraduationCap,
 } from 'lucide-react'
 import { Container, Button, SectionHead, Reveal } from '../components/ui'
 import CtaBand from '../components/CtaBand'
@@ -9,6 +10,7 @@ import { useT, whyList, modulesList, FEATURED } from '../i18n'
 import { useSeo } from '../lib/seo'
 
 const PROB_ICON = [FileWarning, Clock, DatabaseZap, TrendingDown, Building2, CircleSlash]
+const APPROACH_ICON = [Compass, Workflow, Layers, GraduationCap]
 
 export default function Home() {
   const t = useT()
@@ -73,8 +75,33 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* ── PROBLÈMES CONCRETS ───────────────────────── */}
+      {/* ── NOTRE APPROCHE : DIGITALISATION & CONSEIL ── */}
       <section className="py-24 sm:py-32">
+        <Container>
+          <Reveal><SectionHead center eyebrow={t.approach.eyebrow} title={t.approach.title} sub={t.approach.sub} /></Reveal>
+          <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {t.approach.steps.map((s, i) => {
+              const Icon = APPROACH_ICON[i]
+              const highlight = i === 2 // la plateforme = notre solution
+              return (
+                <Reveal key={s.title} delay={i * 90}>
+                  <div className={`relative flex h-full flex-col rounded-2xl border p-6 shadow-card transition-all hover:-translate-y-1 hover:shadow-medium ${highlight ? 'border-transparent bg-brand text-white shadow-glow' : 'border-slate-200 bg-white'}`}>
+                    <div className="flex items-center justify-between">
+                      <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${highlight ? 'bg-white/15 text-white' : 'bg-blue-50 text-blue-600'}`}><Icon className="h-6 w-6" /></div>
+                      <span className={`font-mono text-sm font-bold ${highlight ? 'text-white/70' : 'text-slate-300'}`}>0{i + 1}</span>
+                    </div>
+                    <h3 className={`mt-5 font-display text-lg font-semibold ${highlight ? 'text-white' : 'text-navy-900'}`}>{s.title}</h3>
+                    <p className={`mt-2 text-sm leading-relaxed ${highlight ? 'text-white/90' : 'text-slate-600'}`}>{s.desc}</p>
+                  </div>
+                </Reveal>
+              )
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* ── PROBLÈMES CONCRETS ───────────────────────── */}
+      <section className="bg-slate-50 py-24 sm:py-32">
         <Container>
           <Reveal><SectionHead center eyebrow={t.home.probEyebrow} title={t.home.probTitle} sub={t.home.probSub} /></Reveal>
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
