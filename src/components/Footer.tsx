@@ -38,9 +38,11 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-7 text-xs text-slate-500 sm:flex-row sm:items-center">
           <p>© 2026 Tchomnou Applications Systems — TAS Platform. {t.footer.rights}</p>
-          <div className="flex items-center gap-5">
-            <Link to="/a-propos" className="hover:text-white">{t.footer.legal1}</Link>
-            <Link to="/a-propos" className="hover:text-white">{t.footer.legal2}</Link>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Link to="/mentions-legales" className="hover:text-white">{t.footer.legal1}</Link>
+            <Link to="/confidentialite" className="hover:text-white">{t.footer.legal2}</Link>
+            <Link to="/cookies" className="hover:text-white">{t.footer.legal3}</Link>
+            <Link to="/cgu" className="hover:text-white">{t.footer.legal4}</Link>
           </div>
         </div>
       </div>

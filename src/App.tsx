@@ -10,7 +10,9 @@ import Resources from './pages/Resources'
 import About from './pages/About'
 import Careers from './pages/Careers'
 import Contact from './pages/Contact'
+import Legal from './pages/Legal'
 import NotFound from './pages/NotFound'
+import CookieBanner from './components/CookieBanner'
 
 function ScrollManager() {
   const { pathname, hash } = useLocation()
@@ -39,10 +41,15 @@ export default function App() {
           <Route path="/a-propos" element={<About />} />
           <Route path="/carrieres" element={<Careers />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/mentions-legales" element={<Legal docKey="legal" path="/mentions-legales" />} />
+          <Route path="/confidentialite" element={<Legal docKey="privacy" path="/confidentialite" />} />
+          <Route path="/cookies" element={<Legal docKey="cookies" path="/cookies" />} />
+          <Route path="/cgu" element={<Legal docKey="terms" path="/cgu" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
+      <CookieBanner />
     </div>
   )
 }
